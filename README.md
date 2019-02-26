@@ -8,10 +8,10 @@ This project is a webservice for the "Doodle" tech company. This project will be
 ## Requirements
 
 - "Requirements gathering" on-line system to store building project requirments
-- clean and simple design
-- document(jpg) upload/viewing 
+- Clean and simple design
+- Document (jpg) handling (upload/viewing )
 - User access levels (client, administrator)
-- must include at lease one self developed api and one webservice 
+- Includes at lease one self developed api and one webservice 
 
 ## Project principles
 
