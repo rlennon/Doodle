@@ -4,11 +4,17 @@ M.Sc. DevOps Team 1
 
 # Introduction
 
-//TODO: Write short intro
+This project is a webservice for the "Doodle" tech company. This project will be delivered using DevOps/agile methodology
 
 //TODO: Build/Release badges go here
 
 # Project Specification
+
+- "Requirements gathering" on-line system to store building project requirments
+- Clean and simple design
+- Document (jpg) handling (upload/viewing )
+- User access levels (client, administrator)
+- Includes at lease one self developed api and one webservice 
 
 The customer would like an on-line system to enter details for the latest Doodle branch. Doodle is a
 engineering and tech company. Their most popular product is a browser. The system must take details
@@ -57,7 +63,23 @@ Colin, Conor, Emmet, Fiona, Francis, Lee, Peter, Wes
 
 # Tenants of Design
 
-- Infrastructure as code
-- Unit tests
-- Security validation 
-- etc
+- dedication to clean, secure, performant and self documented code
+  - code Frameworks used
+  - code coverage tool used
+  - Secure code: Regex for cleansing and validation, Named queries and database triggers
+  - performance testing tool to be used
+- documentation/ code commenting (javadoc)/seperate branch
+- Database for persistant storage
+- testing:
+  - Unit testing
+  - integretation testing
+  - UA
+ - Environments:
+    - staging and production
+    - tight configuration management for consistency and reproducibility
+    - automated creation and deployments
+ - integrated and automated pipeline (commit -> test -> deploy)
+ - github version control:
+  - branches used
+  - version/release management
+ - agile project management methods/principles (jira)
