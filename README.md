@@ -45,7 +45,7 @@ Colin, Conor, Emmet, Fiona, Francis, Lee, Peter, Wes
 # Links
 
 - Slack: https://lyit.slack.com/messages/GGGLUP8H3
-- Jira: 
+- Jira: https://studentjira.lyit.ie/secure/RapidBoard.jspa?projectKey=DOODLE&rapidView=51&view=planning.nodetail
 - GitHub: https://github.com/rlennon/Doodle
 
 # Technology
