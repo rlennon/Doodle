@@ -83,3 +83,13 @@ Colin, Conor, Emmet, Fiona, Francis, Lee, Peter, Wes
   - branches used
   - version/release management
  - agile project management methods/principles (jira)
+ 
+ 
+# Considerations:
+
+- Frameworks 
+- Databse
+- Databse persistence technology 
+- Define the Buisness Requirements 
+- Named queries and database triggers for security
+- Regex for cleansing and Validation of data before sending to the database
