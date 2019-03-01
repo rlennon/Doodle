@@ -20,3 +20,5 @@ Here we outline not only our current architecture but the journey taken to get t
 
 - Language: Python
 - Datastore: Mongo
+- Version Control : GitHub
+- Issue tracking : JIRA
