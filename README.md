@@ -2,13 +2,28 @@
 
 M.Sc. DevOps Team 1
 
-# Introduction
+# Table of Contents
 
-This project is a webservice for the "Doodle" tech company. This project will be delivered using DevOps/agile methodology
+- [Doodle](#doodle)
+- [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+    - [Rockstars](#rockstars)
+  - [Project Specification](#project-specification)
+  - [Useful Links](#useful-links)
+    - [For more information visit our other sections](#for-more-information-visit-our-other-sections)
+  - [Risk Register](#risk-register)
+  - [Tenants of Design](#tenants-of-design)
 
-//TODO: Build/Release badges go here
+## Introduction
 
-# Project Specification
+This is the online repository for the engineering and tech giant **Doodle**. Our current product **Brancher** will be delivered using an Agile methodology that embraces the [DevOps culture](https://martinfowler.com/bliki/DevOpsCulture.html). 
+Please note that our culture embraces change and these documents are treated as living, breathing artefacts that will be continuously updated.
+
+### Rockstars
+
+Colin, Conor, Emmet, Fiona, Francis, Lee, Peter, Wes
+
+## Project Specification
 
 - "Requirements gathering" on-line system to store building project requirments
 - Clean and simple design
@@ -26,60 +41,45 @@ files or images which may be sample construction diagrams. Jpgs are fine. Do not
 etc. The administrator should be able to access detailed information and edit as appropriate. Once
 the client enters details it should not be able to be changed by the client.
 
-# Team
-
-Colin, Conor, Emmet, Fiona, Francis, Lee, Peter, Wes
-
-# Ceremonies
-
- - Sprint Duration: 1 week
- - Planning : Thursdays 8pm
- - Standups: Monday / Friday after class
- - Demos: Recorded after each sprint and shared
- - Retrospectives: Thursdays before planning
-
-# Definition of Done
-
-//TODO
-
-# Links
+## Useful Links
 
 - Slack: https://lyit.slack.com/messages/GGGLUP8H3
 - Jira: https://studentjira.lyit.ie/secure/RapidBoard.jspa?projectKey=DOODLE&rapidView=51&view=planning.nodetail
 - GitHub: https://github.com/rlennon/Doodle
 
-# Technology
+### For more information visit our other sections
 
-- Language: Python
-- Datastore: Mongo
+| Section  | Description  |
+|---|---|
+| [Process](./content/process.md) | Describes the companies process  |
+| [Architecture](./content/architecture.md) | Outlines the architecture |
+| [Environments](./content/environments.md) | Overview of the environment set-up |
 
-# Architecture
+## Risk Register
 
-//TODO
+Please see our list of Risks
 
-# Risk Register
+//TODO: Embed query here?
 
-//TODO
+## Tenants of Design
 
-# Tenants of Design
-
-- dedication to clean, secure, performant and self documented code
+- Dedication to clean, secure, performant and self documented code
   - code Frameworks used
   - code coverage tool used
   - Secure code: Regex for cleansing and validation, Named queries and database triggers
   - performance testing tool to be used
-- documentation/ code commenting (javadoc)/seperate branch
-- Database for persistant storage
-- testing:
+- Documentation / code commenting (javadoc)/seperate branch
+- Datastore for persistance
+- Testing:
   - Unit testing
   - integretation testing
   - UA
- - Environments:
-    - staging and production
-    - tight configuration management for consistency and reproducibility
-    - automated creation and deployments
- - integrated and automated pipeline (commit -> test -> deploy)
- - github version control:
+- Environments:
+  - staging and production
+  - tight configuration management for consistency and reproducibility
+  - automated creation and deployments
+  - integrated and automated pipeline (commit -> test -> deploy)
+- Github version control:
   - branches used
   - version/release management
- - agile project management methods/principles (jira)
+- Agile project management methods/principles (jira)
