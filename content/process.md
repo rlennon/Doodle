@@ -12,9 +12,9 @@ This page will outline the various processes that we have refined as the project
 
 Being a forward thinking company, we like to keep our people both happy and challenged, this means we change roles **A LOT!**
 
-| Role | Week 1 | Week 2 | Week 3 | Week 4 | Week 5 |
+| Role | Week 0 1/3 | Week 1 8/3 | Week 2 15/3 | Week 3 22/3 | Week 4 29/3 | Week 5 5/4 | Week 6 12/4 | Week 7 19/4 |
 |---|---|---|---|---|---|
-| Scrum Master | Francis | Colin | Conor  | Emmet   | Lee |
+| Scrum Master | Francis | Colin | Conor  | Emmet   | Fiona | Lee | Peter | Wes |
 | Proxy PO     | Conor   | Peter | Wes    | Francis | Colin |
 | Tech Lead    | Emmet   | Fiona | Lee    | Peter     | Wes |
 
