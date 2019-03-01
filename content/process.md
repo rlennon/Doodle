@@ -14,9 +14,9 @@ Being a forward thinking company, we like to keep our people both happy and chal
 
 | Role | Week 1 | Week 2 | Week 3 | Week 4 | Week 5 |
 |---|---|---|---|---|---|
-| Scrum Master ||||||
-| Proxy PO ||||||
-| Tech Lead ||||||
+| Scrum Master | Francis | Colin | Conor  | Emmet   | Lee |
+| Proxy PO     | Conor   | Peter | Wes    | Francis | Colin |
+| Tech Lead    | Emmet   | Fiona | Lee    | Peter     | Wes |
 
 #### Sprints
 
