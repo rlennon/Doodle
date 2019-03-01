@@ -53,7 +53,7 @@ the client enters details it should not be able to be changed by the client.
 |---|---|
 | [Process](./content/process.md) | Describes the companies process  |
 | [Architecture](./content/architecture.md) | Outlines the architecture |
-| [Environments](./content/environments.md) | Overview of the environment set-up |
+| [Environments](./content/environment.md) | Overview of the environment set-up |
 
 ## Risk Register
 
