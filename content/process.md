@@ -50,6 +50,42 @@ We will adopt a simple branching strategy based on [trunk based development](htt
 
 [Simple Branching Strategy](https://docs.microsoft.com/en-us/azure/devops/repos/git/git-branching-guidance?view=azure-devops#keep-your-branch-strategy-simple)
 
+#### How to make changes
+
+These are the steps involved in making changes to the repository.
+
+Firstly ensure you have cloned the repository locally, open a command/powershell prompt and follow the steps below
+
+```
+
+mkdir c:\code
+cd c:\code
+git clone https://github.com/rlennon/Doodle.git
+cd .\Doodle
+
+```
+
+You now have the repository cloned locally and are on the **master** branch. Next create a branch and check it out.
+
+```
+
+git checkout -b test-branch
+
+```
+
+You have now created/checked out the test-branch and can make changes in isolation, once you have completed your changes you can then commit them and merge master down to your branch,
+this ensures you aren't trying to PR a branch that might have conflicts.
+
+```
+
+git commit -m 'A nice descriptive message'
+
+git merge master
+
+```
+
+If there are no conflicts and everything is good
+
 ### Jira
 
 ### Versioning
