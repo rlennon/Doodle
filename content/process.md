@@ -76,15 +76,17 @@ git checkout -b test-branch
 You have now created/checked out the test-branch and can make changes in isolation, once you have completed your changes you can then commit them and merge master down to your branch,
 this ensures you aren't trying to PR a branch that might have conflicts.
 
+Remember to work in small chunks, commit often.
+
 ```
 
+git add *
 git commit -m 'A nice descriptive message'
-
 git merge master
 
 ```
 
-If there are no conflicts and everything is good
+If there are no conflicts and everything is good then open a [Pull Request](https://github.com/rlennon/Doodle/pulls)
 
 ### Jira
 
