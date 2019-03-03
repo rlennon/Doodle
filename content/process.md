@@ -83,10 +83,11 @@ Remember to work in small chunks, commit often.
 git add *
 git commit -m 'A nice descriptive message'
 git merge master
+git push --set-upstream origin test-branch
 
 ```
 
-If there are no conflicts and everything is good then open a [Pull Request](https://github.com/rlennon/Doodle/pulls)
+If there are no conflicts and everything is good then push your branch to origin if you haven't already and open a [Pull Request](https://github.com/rlennon/Doodle/pulls)
 
 ### Jira
 
