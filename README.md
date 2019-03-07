@@ -14,7 +14,7 @@ M.Sc. DevOps Team 1
   - [Risk Register](#risk-register)
   - [Tenants of Design](#tenants-of-design)
 
-## Introduction
+## Introduction!
 
 This is the online repository for the engineering and tech giant **Doodle**. Our current product **Brancher** will be delivered using an Agile methodology that embraces the [DevOps culture](https://martinfowler.com/bliki/DevOpsCulture.html). 
 Please note that our culture embraces change and these documents are treated as living, breathing artefacts that will be continuously updated.
