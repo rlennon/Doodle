@@ -83,3 +83,12 @@ Please see our list of Risks
   - branches used
   - version/release management
 - Agile project management methods/principles (jira)
+
+## Consideration
+
+- Frameworks
+- Database
+- Database persistance technology 
+- Define the buisness Requirements
+- Named queries and database triggers for security 
+- Regex for cleansing and validation of data before sending to the database.
