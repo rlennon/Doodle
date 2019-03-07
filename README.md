@@ -59,7 +59,7 @@ the client enters details it should not be able to be changed by the client.
 
 Please see our list of Risks
 
-//TODO: Embed query here?
+//TODO: Do we want to query here?
 
 ## Tenants of Design
 
