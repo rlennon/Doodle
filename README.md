@@ -21,7 +21,7 @@ Please note that our culture embraces change and these documents are treated as 
 
 ### Rockstars
 
-Colin, Conor, Emmet, Fiona, Francis, Lee, Peter, Wes
+Colin, Conor, Emmet, Fiona, Francis, Lee, Peter, Wesley
 
 ## Project Specification
 
