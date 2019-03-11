@@ -94,3 +94,12 @@ If there are no conflicts and everything is good then push your branch to origin
 ### Versioning
 
 Versioning will follow [Semantic guidelines](https://semver.org/)
+
+## Consideration
+
+- Frameworks
+- Database
+- Database persistance technology 
+- Define the buisness Requirements
+- Named queries and database triggers for security 
+- Regex for cleansing and validation of data before sending to the database.
