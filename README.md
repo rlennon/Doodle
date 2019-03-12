@@ -41,6 +41,15 @@ files or images which may be sample construction diagrams. Jpgs are fine. Do not
 etc. The administrator should be able to access detailed information and edit as appropriate. Once
 the client enters details it should not be able to be changed by the client.
 
+## Considerations:
+
+- Frameworks
+- Database
+- Database persistence technology 
+- Define the buisness Requirements
+- Named queries and database triggers for security 
+- Regex for cleansing and validation of data before sending to the database.
+
 ## Useful Links
 
 - Slack: https://lyit.slack.com/messages/GGGLUP8H3
