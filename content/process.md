@@ -22,6 +22,16 @@ Being a forward thinking company, we like to keep our people both happy and chal
 
 Sprints are 1 week in length, starting on Fridays and finishing on Thursdays.
 
+General progression of sprints:
+
+- Process / Documentation
+- Jira setup / planning / estimation
+- POCs and refine technology choices / architecture
+- Environments with VMs
+- Jenkins and pipelines manually
+- Automate Infrastructure as code
+- Refine the product / Add checks and balances to the pipelines
+
 #### Definition of Done
 
 - All code merged to master
