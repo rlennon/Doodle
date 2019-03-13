@@ -1,0 +1,21 @@
+{% extends "layout.html "%}
+{% block content %}
+<h1 class="display-3">Branches</h1>
+<table class="table">
+    <tr>
+        <thead>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Location</th>
+        </thead>
+    </tr>
+    {% for item in branches %}
+    <tr  scope="row">
+        <td>{{ item.id }}</td>
+        <td>{{ item.name}}</td>
+        <td>{{ item.location }}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+{% endblock content %}
