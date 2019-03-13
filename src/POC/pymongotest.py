@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 # Doodle PoC Python - MongoDB
-=======
-# Doodle PoC Pythin - MongoDB
->>>>>>> master
 # Usage from command line:
 # python pymongotest.py findall
 # python pymongotest.py add name width length height
