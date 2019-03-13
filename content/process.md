@@ -22,6 +22,16 @@ Being a forward thinking company, we like to keep our people both happy and chal
 
 Sprints are 1 week in length, starting on Fridays and finishing on Thursdays.
 
+General progression of sprints:
+
+- Process / Documentation
+- Jira setup / planning / estimation
+- POCs and refine technology choices / architecture
+- Environments with VMs
+- Jenkins and pipelines manually
+- Automate Infrastructure as code
+- Refine the product / Add checks and balances to the pipelines
+
 #### Definition of Done
 
 - All code merged to master
@@ -94,3 +104,12 @@ If there are no conflicts and everything is good then push your branch to origin
 ### Versioning
 
 Versioning will follow [Semantic guidelines](https://semver.org/)
+
+## Consideration
+
+- Frameworks
+- Database
+- Database persistance technology 
+- Define the buisness Requirements
+- Named queries and database triggers for security 
+- Regex for cleansing and validation of data before sending to the database.

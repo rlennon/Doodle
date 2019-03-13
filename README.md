@@ -9,12 +9,13 @@ M.Sc. DevOps Team 1
   - [Introduction](#introduction)
     - [Rockstars](#rockstars)
   - [Project Specification](#project-specification)
+  - [Considerations](#Considerations)
   - [Useful Links](#useful-links)
     - [For more information visit our other sections](#for-more-information-visit-our-other-sections)
   - [Risk Register](#risk-register)
   - [Tenants of Design](#tenants-of-design)
 
-## Introduction
+## Introduction!
 
 This is the online repository for the engineering and tech giant **Doodle**. Our current product **Brancher** will be delivered using an Agile methodology that embraces the [DevOps culture](https://martinfowler.com/bliki/DevOpsCulture.html). 
 Please note that our culture embraces change and these documents are treated as living, breathing artefacts that will be continuously updated.
@@ -40,6 +41,15 @@ to take into account the usual details about dimensions and cost/budget. It must
 files or images which may be sample construction diagrams. Jpgs are fine. Do not worry about autocad,
 etc. The administrator should be able to access detailed information and edit as appropriate. Once
 the client enters details it should not be able to be changed by the client.
+
+## Considerations:
+
+- Frameworks
+- Database
+- Database persistence technology 
+- Define the buisness Requirements
+- Named queries and database triggers for security 
+- Regex for cleansing and validation of data before sending to the database.
 
 ## Useful Links
 
