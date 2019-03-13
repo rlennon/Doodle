@@ -26,6 +26,10 @@
 
 * An Administrator user can only be created during system setup or by another Administrator user.
 
+* Normal users & Administrator users can only be deleted by an Administrator user.
+
+* At least 1 Administrator user must exist at all times.
+
 * The user will need to enter their username and password to log in.
 
 * If the username and password are correct they shall gain access to the on-line system.
@@ -36,9 +40,17 @@
 
 **Data Entry Requirements Details**
 
-* Branch location should be entered.
+* Branch name and address should be entered.
 
 * Dimensions can be entered.
+
+* Number of rooms within the branch can be entered.
+
+* Any special room requirments can be entered.
+
+* Number of floors can be entered.
+
+* Number of car parking spaces required can be entered.
 
 * Cost/budget can be entered.
 
@@ -62,8 +74,6 @@
 
 * The frontend UI layout should be simple and clean.
 
-**Outstanding Questions**
+* A normal user can submit a request to delete a branch from the system by entering the branch name & clicking the Delete Branch button.
 
-Do we need to worry about adding & deleting users?
-
-Do we need to worry about adding & deleting branches?
+* The request then stays in the system until an Administrator user decides whether to delete the branch or not.
