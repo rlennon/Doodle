@@ -9,6 +9,7 @@ M.Sc. DevOps Team 1
   - [Introduction](#introduction)
     - [Rockstars](#rockstars)
   - [Project Specification](#project-specification)
+  - [Considerations](#Considerations)
   - [Useful Links](#useful-links)
     - [For more information visit our other sections](#for-more-information-visit-our-other-sections)
   - [Risk Register](#risk-register)
