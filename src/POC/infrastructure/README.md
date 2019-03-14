@@ -9,6 +9,7 @@ This Proof of Concept demonstrates three technologies to provision and configure
 
 dependencies:
 
+- ansible
 - vagrant
 - vagrant-hostmanager plugin
 
