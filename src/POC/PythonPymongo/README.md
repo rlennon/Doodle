@@ -1,5 +1,4 @@
-# Doodle POC - Python MongoDB using Pymongo
-
+# Doodle POC Python MongoDB using Pymongo
 This POC is intended to prove that python can successfully connect to a MongoDB and uncover any potential issues. Identifying these issues at this early stage in the project will minimise any development time wasted.
 
 ## Objectives
