@@ -26,7 +26,7 @@ Colin, Conor, Emmet, Fiona, Francis, Lee, Peter, Wes
 
 ## Project Deadline
 
-29th April 2019 @ 23:59
+29th April 2019 at 23:59
 
 ## Project Specification
 
