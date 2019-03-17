@@ -1,6 +1,7 @@
 ##      Starting mongo from command line
 
-1.	Download MongoDB
+1.	Download MongoDB 4.0.6 ->  https://www.mongodb.com/download-center/community
+                               mongodb-win32-x86_64-2008plus-ssl-4.0.6-signed.msi
 
 2.	When Installing MongoDB, choose Complete version not custom. You can choose custom if you want a smaller/easier naming convention.
 
