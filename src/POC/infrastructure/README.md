@@ -1,7 +1,7 @@
 # Infrastructure POC
 
 This Proof of Concept demonstrates three technologies to provision and configure infrastructure VMs. it uses:
-- Vagrant: for local dev environment provisioning
+- Vagrant/Virtualbox: for local dev environment provisioning
 - Terraform: for production provisioning
 - Ansible: for configuration management
 
@@ -9,6 +9,7 @@ This Proof of Concept demonstrates three technologies to provision and configure
 
 dependencies:
 
+- virtualbox
 - ansible
 - vagrant
 - vagrant-hostmanager plugin
