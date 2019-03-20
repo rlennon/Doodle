@@ -24,6 +24,10 @@ Please note that our culture embraces change and these documents are treated as 
 
 Colin, Conor, Emmet, Fiona, Francis, Lee, Peter, Wes
 
+## Project Deadline
+
+29th April 2019 at 23:59
+
 ## Project Specification
 
 - "Requirements gathering" on-line system to store building project requirments
