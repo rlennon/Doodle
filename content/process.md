@@ -14,23 +14,19 @@ Being a forward thinking company, we like to keep our people both happy and chal
 
 | Role | Week 0 1/3 | Week 1 8/3 | Week 2 15/3 | Week 3 22/3 | Week 4 29/3 | Week 5 5/4 | Week 6 12/4 | Week 7 19/4 |
 |---|---|---|---|---|---|---|---|---|
-| Scrum Master | Francis | Colin | Conor  | Emmet   | Fiona | Lee | Peter   | Wes |
-| Proxy PO     | Conor   | Emmet | Fiona  | Lee     | Peter | Wes | Francis | Colin |
-| Tech Lead    | Emmet   | Fiona | Lee    | Peter   | Wes   | Francis | Colin | Conor |
+| **Scrum Master** | Francis | Colin | Conor  | Emmet   | Fiona | Lee | Peter   | Wes |
+| **Proxy PO**     | Conor   | Emmet | Fiona  | Lee     | Peter | Wes | Francis | Colin |
+| **Tech Lead**    | Emmet   | Fiona | Lee    | Peter   | Wes   | Francis | Colin | Conor |
 
 #### Sprints
 
 Sprints are 1 week in length, starting on Fridays and finishing on Thursdays.
 
-General progression of sprints:
+##### Sprint Goals
 
-- Process / Documentation
-- Jira setup / planning / estimation
-- POCs and refine technology choices / architecture
-- Environments with VMs
-- Jenkins and pipelines manually
-- Automate Infrastructure as code
-- Refine the product / Add checks and balances to the pipelines
+| Sprint 1 | Sprint 2 | Sprint 3 | Sprint 4 | Sprint 5 | Sprint 6 | Sprint 7 | Sprint 8 | Sprint 9 |
+|---|---|---|---|---|---|---|---|---|
+|Process | Jira/Planning | POCS/Tech/Arch | Envs | Pipelines | Automation | Refine product | | |
 
 #### Definition of Done
 
@@ -100,6 +96,7 @@ git push --set-upstream origin test-branch
 If there are no conflicts and everything is good then push your branch to origin if you haven't already and open a [Pull Request](https://github.com/rlennon/Doodle/pulls)
 
 ### Jira
+
 
 ### Versioning
 
