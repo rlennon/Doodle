@@ -24,6 +24,10 @@ Please note that our culture embraces change and these documents are treated as 
 
 Colin, Conor, Emmet, Fiona, Francis, Lee, Peter, Wes
 
+## Project Deadline
+
+29th April 2019 at 23:59
+
 ## Project Specification
 
 - "Requirements gathering" on-line system to store building project requirments
@@ -64,6 +68,7 @@ the client enters details it should not be able to be changed by the client.
 | [Process](./content/process.md) | Describes the companies process  |
 | [Architecture](./content/architecture.md) | Outlines the architecture |
 | [Environments](./content/environment.md) | Overview of the environment set-up |
+| [Requirements](./content/requirements.md) | Overview of the requirements for the project |
 
 ## Risk Register
 
