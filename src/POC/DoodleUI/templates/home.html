@@ -1,4 +1,4 @@
-{% extends "layout.html "%}
+{% extends "layout.html"%}
 {% block content %}
 <h1 class="display-3">Branches</h1>
 <table class="table">
@@ -7,13 +7,19 @@
             <th scope="col">ID</th>
             <th scope="col">Name</th>
             <th scope="col">Location</th>
+            <th scope="col">Width</th>
+            <th scope="col">Height</th>
+            <th scope="col">Length</th>
         </thead>
     </tr>
     {% for item in branches %}
     <tr  scope="row">
-        <td>{{ item.id }}</td>
+        <td><a href="/branch/{{ item.id }}"><{{ item.id }}</a></td>
         <td>{{ item.name}}</td>
         <td>{{ item.location }}</td>
+        <td>{{ item.width }}</td>
+        <td>{{ item.height }}</td>
+        <td>{{ item.length }}</td>
     </tr>
     {% endfor %}
 
