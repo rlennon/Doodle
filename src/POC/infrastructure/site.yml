@@ -1,0 +1,55 @@
+---
+- hosts: all
+  user: vagrant
+  become: yes
+  tasks:
+
+  - name: Install list of packages
+    apt:
+      name: ['ca-certificates', 'software-properties-common', 'apt-transport-https', 'openjdk-8-jdk', 'python3.5']
+
+- hosts: jenkins.internal.tld
+  user: vagrant
+  become: yes
+  tasks:
+
+  - name: Add GPG key
+    apt_key:
+      url: "https://pkg.jenkins.io/debian/jenkins.io.key"
+
+  - name: Configure APT repository
+    apt_repository:
+      repo: "deb https://pkg.jenkins.io/debian binary/"
+      update_cache: true
+
+  - name: Install packages
+    apt:
+      name: jenkins
+
+- hosts: web.internal.tld
+  user: vagrant
+  become: yes
+  tasks:
+
+  - name: Install packages
+    apt:
+      name: apache2
+
+- hosts: api.internal.tld
+  user: vagrant
+  become: yes
+  tasks:
+
+  - name: Add GPG key
+    apt_key:
+      id: "7F0CEB10"
+      keyserver: "keyserver.ubuntu.com"
+
+  - name: Configure APT repository
+    apt_repository:
+      repo: "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse"
+      update_cache: true
+
+  - name: Install packages
+    apt:
+      name: mongodb

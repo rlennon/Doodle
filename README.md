@@ -9,12 +9,13 @@ M.Sc. DevOps Team 1
   - [Introduction](#introduction)
     - [Rockstars](#rockstars)
   - [Project Specification](#project-specification)
+  - [Considerations](#Considerations)
   - [Useful Links](#useful-links)
     - [For more information visit our other sections](#for-more-information-visit-our-other-sections)
   - [Risk Register](#risk-register)
   - [Tenants of Design](#tenants-of-design)
 
-## Introduction
+## Introduction!
 
 This is the online repository for the engineering and tech giant **Doodle**. Our current product **Brancher** will be delivered using an Agile methodology that embraces the [DevOps culture](https://martinfowler.com/bliki/DevOpsCulture.html). 
 Please note that our culture embraces change and these documents are treated as living, breathing artefacts that will be continuously updated.
@@ -22,6 +23,10 @@ Please note that our culture embraces change and these documents are treated as 
 ### Rockstars
 
 Colin, Conor, Emmet, Fiona, Francis, Lee, Peter, Wes
+
+## Project Deadline
+
+29th April 2019 at 23:59
 
 ## Project Specification
 
@@ -41,6 +46,15 @@ files or images which may be sample construction diagrams. Jpgs are fine. Do not
 etc. The administrator should be able to access detailed information and edit as appropriate. Once
 the client enters details it should not be able to be changed by the client.
 
+## Considerations:
+
+- Frameworks
+- Database
+- Database persistence technology 
+- Define the buisness Requirements
+- Named queries and database triggers for security 
+- Regex for cleansing and validation of data before sending to the database.
+
 ## Useful Links
 
 - Slack: https://lyit.slack.com/messages/GGGLUP8H3
@@ -54,6 +68,7 @@ the client enters details it should not be able to be changed by the client.
 | [Process](./content/process.md) | Describes the companies process  |
 | [Architecture](./content/architecture.md) | Outlines the architecture |
 | [Environments](./content/environment.md) | Overview of the environment set-up |
+| [Requirements](./content/requirements.md) | Overview of the requirements for the project |
 
 ## Risk Register
 
