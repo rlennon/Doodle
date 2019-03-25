@@ -13,7 +13,7 @@ stage('artifactory'){
                 "files":[
                     {
                         "pattern":"smrtwo-dev/first/conord/1.0.0/Conord-1.0.0.jar",
-                        "target":"smrtwo-dev/"
+                        "target":"smrtwo-dev/",
                     }
                 ]
             }"""
@@ -24,3 +24,18 @@ stage('artifactory'){
         }
     }
 }
+
+//Upload files up to Artifactory
+//link to help understand Artifactory = https://www.jfrog.com/confluence/display/RTF/Working+With+Pipeline+Jobs+in+Jenkins
+rtUpload (
+    serverId: "Artifactory-1",
+    spec:
+        """{
+          "files": [
+            {
+              "pattern": "smrtwo-dev/conord-1.0.0.jar",
+              "target": "smrtwo-dev/first/conord/1.0.0/"
+            }
+         ]
+        }"""
+)
