@@ -1,5 +1,5 @@
 [Unit]
-Description=Doodle API daemon
+Description=Doodle webUI daemon
 #Requires=gunicorn.socket
 After=network.target
 

@@ -3,3 +3,4 @@ gunicorn
 markdown
 flask_restful
 pymongo
+wtforms
