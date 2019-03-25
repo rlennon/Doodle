@@ -1,0 +1,20 @@
+[Unit]
+Description=Doodle API daemon
+#Requires=gunicorn.socket
+After=network.target
+
+[Service]
+PIDFile=/run/gunicorn/pid
+PermissionsStartOnly = true
+User=nobody
+Group=nogroup
+RuntimeDirectory=gunicorn
+WorkingDirectory=/home/vagrant/Doodle/src/POC/infrastructure/DoodleUI
+ExecStart=/home/vagrant/Doodle/env/bin/gunicorn --pid /run/gunicorn/pid   \
+          -b :8080 test:app
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
