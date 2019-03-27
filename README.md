@@ -6,10 +6,11 @@ M.Sc. DevOps Team 1
 
 - [Doodle](#doodle)
 - [Table of Contents](#table-of-contents)
-  - [Introduction](#introduction)
+  - [Introduction!](#introduction)
     - [Rockstars](#rockstars)
+  - [Project Deadline](#project-deadline)
   - [Project Specification](#project-specification)
-  - [Considerations](#Considerations)
+  - [Considerations:](#considerations)
   - [Useful Links](#useful-links)
     - [For more information visit our other sections](#for-more-information-visit-our-other-sections)
   - [Risk Register](#risk-register)
@@ -117,6 +118,7 @@ Please see our list of Risks
 - Be on time for Stand Ups and meetings.
 - Mobile phones on silent.
 - Everyone has equal voice and valuable contribution.
+- Keep your language and tone professional at all times.
 - Be honest.
 
 **Communication**
@@ -125,7 +127,6 @@ Please see our list of Risks
 - If a demonstration is required use Zoom, record the session and upload to the Slack channel.
 - No Slack communications between midnight and 7am GMT.
 - Raise a problem as soon as you see it.
-- Respect each other and understand differences in knowledge.
 - Respect each other and understand differences in knowledge.
 - All team documents are to be created using Markdown language and shared on GitHub.
 - There are no silly questions, if you don’t understand, ask.
@@ -149,8 +150,10 @@ Please see our list of Risks
 - Sprints will start Friday morning at 9am EST and run for 1 week
 - The Scrum Master role rotates each week, the schedule will be kept within the Process page on GitHub (https://github.com/rlennon/Doodle/blob/master/content/process.md)
 - Jira will be used for task management and planning.
+- Each member of the team will work 6 hours per week, unless they are on vacation.
 
-**Story Points Within Jira**
+
+**Estimating Story Points Within Jira**
 
 1 = Up to 1 day to complete
 
