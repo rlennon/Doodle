@@ -14,6 +14,7 @@ M.Sc. DevOps Team 1
     - [For more information visit our other sections](#for-more-information-visit-our-other-sections)
   - [Risk Register](#risk-register)
   - [Tenants of Design](#tenants-of-design)
+  - [Social Contract](#social-contract)
 
 ## Introduction!
 
@@ -98,3 +99,66 @@ Please see our list of Risks
   - branches used
   - version/release management
 - Agile project management methods/principles (jira)
+
+## Social Contract
+**Meetings**
+
+- Stand-ups will occur straight after class on Monday night & Friday morning, even on Bank Holidays.
+- The order that people give their updates will be based on alphabetical order of those present at the meeting.
+- Updates will be in the form: What I've done, What I plan to do, Impediments
+- Sprint planning will occur every Thursday at 8pm GMT.
+- Please add and update items within Jira prior to the sprint planning session.
+- Sprint retro will occur every second week, at the start of the sprint planning meeting.
+- The order that people present their sprint retro updates will be based on alphabetical order of those present at the meeting.
+- Points raised in the sprint retro will be noted and posted on the Doodle slack retro channel by the Scrum Master.
+- Backlog refinement?
+- Task estimation will be done using Planning Poker with Slack
+- Come prepared to meetings.
+- Be on time for Stand Ups and meetings.
+- Mobile phones on silent.
+- Everyone has equal voice and valuable contribution.
+- Be honest.
+
+**Communication**
+
+- Slack is the preferred method of communication.
+- If a demonstration is required use Zoom, record the session and upload to the Slack channel.
+- No Slack communications between midnight and 7am GMT.
+- Raise a problem as soon as you see it.
+- Respect each other and understand differences in knowledge.
+- Respect each other and understand differences in knowledge.
+- All team documents are to be created using Markdown language and shared on GitHub.
+- There are no silly questions, if you don’t understand, ask.
+- Share success stories.
+- Focus on the positives.
+- Don’t make assumptions.
+- Don’t interrupt and cut another person off while they are talking.
+- Listen when someone is talking, don’t interject.
+- Zero tolerance for bullying.
+- Communication in this order: Slack, Zoom, Blackboard.
+- Agile way of working.
+- If are assigned a job, take ownership of it and keep it up to date.
+- Stick to your agreed working patterns. Let the team know when you are late or going early.
+- Keep JIRA board updated at all times.
+- Update the Scrum Board as you progress the story i.e. don’t update at standup.
+- Don't be afraid to ask for help.
+- Don't be afraid to give constructive critism, as long as it is constructive.
+- Solve roadblocks within the team. If the impediment can’t be solved within the team then give it to the Scrum Master.
+
+**Other**
+- Sprints will start Friday morning at 9am EST and run for 1 week
+- The Scrum Master role rotates each week, the schedule will be kept within the Process page on GitHub (https://github.com/rlennon/Doodle/blob/master/content/process.md)
+- Jira will be used for task management and planning.
+
+**Story Points Within Jira**
+
+1 = Up to 1 day to complete
+
+2 = From 1 day to 2.5 days to complete
+
+5 = From 2.5 to 1 week to complete
+
+8 = From 1 week to 2 weeks to complete (needs to be broken into at least 2 stories)
+
+13 = Multiple weeks to complete (needs to be broken into at least 3 stories)
+
