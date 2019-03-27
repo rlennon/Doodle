@@ -18,6 +18,21 @@ Being a forward thinking company, we like to keep our people both happy and chal
 | Proxy PO     | Conor   | Emmet | Fiona  | Lee     | Peter | Wes | Francis | Colin |
 | Tech Lead    | Emmet   | Fiona | Lee    | Peter   | Wes   | Francis | Colin | Conor |
 
+#### Defined Roles
+A Scrum Master within the Doodle group has the following roles & responsibilities:
+
+- Setting up any meetings that are required.
+- Attempts to resolve impediments that the team may have, though it would be better if the team were able to resolve impediments themselves.
+- Works with the PO and/or proxy PO on requirements.
+- Gets each member of the team to give updates at the twice weekly stand up, either in person or through Slack.
+- Points raised in the sprint retro will be noted and posted on the Doodle slack retro channel
+- Keeps an eye on Jira to ensure tasks are being updated and team members have the correct amount of work in each sprint.
+
+A Proxy PO
+
+A Tech Lead
+
+
 #### Sprints
 
 Sprints are 1 week in length, starting on Fridays and finishing on Thursdays.
