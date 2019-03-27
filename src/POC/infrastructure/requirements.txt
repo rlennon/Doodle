@@ -1,0 +1,8 @@
+flask
+gunicorn
+markdown
+flask_restful
+pymongo
+wtforms
+flask_wtf
+requests
