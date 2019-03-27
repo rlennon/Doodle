@@ -6,10 +6,11 @@ M.Sc. DevOps Team 1
 
 - [Doodle](#doodle)
 - [Table of Contents](#table-of-contents)
-  - [Introduction](#introduction)
+  - [Introduction!](#introduction)
     - [Rockstars](#rockstars)
+  - [Project Deadline](#project-deadline)
   - [Project Specification](#project-specification)
-  - [Considerations](#Considerations)
+  - [Considerations:](#considerations)
   - [Useful Links](#useful-links)
     - [For more information visit our other sections](#for-more-information-visit-our-other-sections)
   - [Risk Register](#risk-register)
@@ -66,6 +67,8 @@ the client enters details it should not be able to be changed by the client.
 | Section  | Description  |
 |---|---|
 | [Process](./content/process.md) | Describes the companies process  |
+| [Project Log](./content/projectlog.md) | Log of project activities |
+| [Costings](./content/costings.md) | Overview of the project cost |
 | [Architecture](./content/architecture.md) | Outlines the architecture |
 | [Environments](./content/environment.md) | Overview of the environment set-up |
 | [Requirements](./content/requirements.md) | Overview of the requirements for the project |
