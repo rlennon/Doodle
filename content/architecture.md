@@ -9,7 +9,7 @@ Here we outline not only our current architecture but the journey taken to get t
   - [Process Architecture](#process-architecture)
   - [Technology Choices](#technology-choices)
   - [Application Artitecture](#application-artitecture)
-  - [Software & Versions](#software--versions)
+  - [Software](#software)
 
 ## Process Architecture
 
@@ -28,17 +28,17 @@ Here we outline not only our current architecture but the journey taken to get t
 
 The application will reside on 2 VMs within the LYIT-CDC datacenter. VM1 will serve as the service endpoint and will host a python webservice. VM2 will host the python API with mongodb datastore. 
 
-## Software & Versions
+## Software
 
-Software | Versions
------------- | -------------
-Linux | 
-Mongo | 4.0.6
-Python | 
-Artifactory | 
-Terraform | 
-Jenkins | 
-Git | 
-Vagrant | 
-Virtualbox | 
-Ansible | 
+| Software | Version | Reason For Choosing Software |
+|---|---|---|
+| Linux | 4.0.6 |  |
+| Mongo |    |  |
+| Python |    |  |
+| Artifactory |    |  |
+| Terraform |    |  |
+| Jenkins |    |  |
+| Git |    |  |
+| Vagrant |    |  |
+| Virtualbox |    |  |
+| Ansible |    |  |
