@@ -27,10 +27,11 @@ A Scrum Master within the Doodle group has the following roles & responsibilitie
 - Gets each member of the team to give updates at the twice weekly stand up, either in person or through Slack.
 - Points raised in the sprint retro will be noted and posted on the Doodle slack retro channel
 - Keeps an eye on Jira to ensure tasks are being updated and team members have the correct amount of work in each sprint.
+- Closing the previous sprint, starting the current sprint & filling in the sprint goal in Jira.
 
-A Proxy PO
+A Proxy PO within the Doodle group will handle any PO related tasks in the event of the PO being unable to attend a meeting. The proxy PO will then inform the PO of the tasks that were performed in their absence.
 
-A Tech Lead
+A Tech Lead within the Doodle group is responsible for making any technology related decisions during the sprint then informing the whole team of the decisions & the reasons behind those decisions.
 
 
 #### Sprints
@@ -55,7 +56,7 @@ Sprints are 1 week in length, starting on Fridays and finishing on Thursdays.
 - Planning : Thursdays 8pm
 - Standups: Monday / Friday after class
 - Demos: Recorded after each sprint and shared
-- Retrospectives: Thursdays before planning
+- Retrospectives: Every second Thursday before sprint planning
 
 ## Technical
 
@@ -112,6 +113,11 @@ If there are no conflicts and everything is good then push your branch to origin
 
 ### Jira
 
+All work carried out by the team must have a task within Jira, the task should have the correct number of points assigned plus valid Acceptance Criteria.
+
+Tasks should be within sprints, each sprint lasting 1 week. Each team member should only take into the sprint the tasks they can complete during that sprint.
+
+All tasks should be moved to **In Progress** when being worked on & moved to **Done** when the Acceptance Criteria have been met.
 
 ### Versioning
 
