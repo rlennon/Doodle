@@ -1,0 +1,33 @@
+pipeline {
+  agent any
+  parameters {
+	}
+  stages {
+    stage('Artifactory Pull') {
+	  	steps {
+		  	sh 'echo "*************************Artifactory Pull*************************"'
+		  }	
+	  }
+  	stage('Transfer to Target Server') {
+  		steps {
+			  sh 'echo "*************************Transfer to Target Server*************************"'
+ 		  }	
+	  }
+				stage('UnTar Package') {
+	  	steps {
+		  	sh 'echo "*************************UnTar Package*************************"'
+		  }	
+	  }
+  	stage('Smoke Test') {
+  		steps {
+			  sh 'echo "*************************Smoke Test*************************"'
+ 		  }	
+	  }
+	  }
+  post {
+    failure {
+        mail to: 'email address',
+             subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+             body: "Something is wrong with ${env.JOB_URL}"
+  }
+}
