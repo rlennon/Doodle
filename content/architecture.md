@@ -21,6 +21,8 @@ Here we outline not only our current architecture but the journey taken to get t
 - Datastore: Mongo
 - Version Control : GitHub
 - Issue tracking : JIRA
+- CI : Jenkins
+- Binary Managemnet : Artifactory
 
 ## Application Artitecture
 
@@ -37,7 +39,7 @@ The application will reside on 2 VMs within the LYIT-CDC datacenter. VM1 will se
 | Python |    |  |
 | Artifactory |    |  |
 | Terraform |    |  |
-| Jenkins |    |  |
+| Jenkins |  2.164.1  |  |
 | Git | 2.7.4   |  |
 | Vagrant |    |  |
 | Virtualbox |    |  |
