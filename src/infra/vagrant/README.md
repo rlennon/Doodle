@@ -1,6 +1,6 @@
-# Vagrant 
+# Vagrant
 
-This deploys the full doodle application stack on your local workstation using Vagrant 
+This deploys the full doodle application stack on your local workstation using Vagrant
 
 ## Dependencies
 
@@ -13,12 +13,11 @@ This deploys the full doodle application stack on your local workstation using V
 
 To create the environment, run:
 
-
 ```
 vagrant up
 ```
 
-This will deploy the VMs in virtualbox before handing over to ansible for configuration
+This will deploy the VMs in Virtualbox before handing over to Ansible for configuration
 
 ## Usage
 
