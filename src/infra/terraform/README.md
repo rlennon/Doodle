@@ -1,6 +1,11 @@
 # Doodle infrastructure
 
-Here is Doodle application infrastructure defined as terraform code.
+Here is Doodle application infrastructure defined as terraform code. This will provision application VMs:
+
+- api
+- web
+
+on LYIT esxi virtual environment.
 
 ## Dependencies
 
