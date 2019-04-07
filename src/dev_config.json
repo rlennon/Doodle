@@ -1,0 +1,7 @@
+{
+  "dbName": "doodle",
+  "dbServerEndpoint": "mongodb://127.0.0.1:27017/",
+  "hostIp": "127.0.0.1",
+  "apiPort": 5000,
+  "uiPort": 80
+}

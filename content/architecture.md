@@ -32,13 +32,17 @@ The application will reside on 2 VMs within the LYIT-CDC datacenter. VM1 will se
 
 | Software | Version | Reason For Choosing Software |
 |---|---|---|
-| Linux | 4.0.6 |  |
-| Mongo |    |  |
+| Ubuntu | 16.04 |  |
+| Mongo | 4.0.6   |  |
 | Python |    |  |
 | Artifactory |    |  |
 | Terraform |    |  |
 | Jenkins |    |  |
-| Git |    |  |
+| Git | 2.7.4   |  |
 | Vagrant |    |  |
 | Virtualbox |    |  |
 | Ansible |    |  |
+
+## Jenkins Installation And Configuration
+
+[Jenkins Installation And Configuration](./jenkins.md)
