@@ -1,0 +1,27 @@
+pipeline {
+  agent any
+  parameters {
+	}
+  stages {
+    stage('GitHub Pull') {
+	  	steps {
+		  	sh 'echo "*************************GitHub Pull*************************"'
+		  }	
+	  }
+  	stage('Sonar Testing') {
+  		steps {
+			  sh 'echo "*************************Sonar Testing*************************"'
+ 		  }	
+	  }
+				stage('Build/Tar Package') {
+	  	steps {
+		  	sh 'echo "*************************Build/Tar Package*************************"'
+		  }	
+	  }
+  	stage('Artifactory Load') {
+  		steps {
+			  sh 'echo "*************************Artifactory Load*************************"'
+ 		  }	
+	  }
+  }
+}
