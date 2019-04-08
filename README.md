@@ -163,6 +163,8 @@ These are the current Risks on the project, re-aligned on a weekly basis
 
 **Estimating Story Points Within Jira**
 
+Initially, as this is a new team, story point calculation will be linked directly with time. After sufficient data has been collected from completed sprints, the teams story point velocity will be calculated an used instead of time estimation.
+
 1 = Up to 1 day to complete
 
 2 = From 1 day to 2.5 days to complete
