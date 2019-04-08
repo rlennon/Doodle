@@ -1,5 +1,5 @@
 ## Service Level Agreement
-Here, at Doodle, out customers are always given top priority. Our goal is ensure customers satisfion, at all times, with our products and all interactions with our team.
+Here, at Doodle, out customers are always given top priority. Our goal is ensure customers satisfaction, at all times, with our products and all interactions with our team.
 
 ## Business Hours
 Our hours of business are from Monday to Friday from 9am to 5pm GMT. We are closed on public holidays in Ireland. 
