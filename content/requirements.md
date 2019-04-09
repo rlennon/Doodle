@@ -76,7 +76,7 @@
 
 * A normal user can submit a request to delete a branch from the system by entering the branch name & clicking the Delete Branch button.
 
-* The request then stays in the system until an Administrator user decides whether to delete the branch or not.
+* The request then stays in the system until an Administrator user decides whether to delete the branch or not.7
 
 **Audit Notes**
 
@@ -106,4 +106,4 @@
 
 * Make sure all important info is in GitHub, never just slack. Project should be recoverable from GitHub.
 
-* Requirements traceability and satisfaction.
+* Requirements traceability and satisfaction..
