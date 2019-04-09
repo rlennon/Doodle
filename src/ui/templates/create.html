@@ -1,30 +1,57 @@
 {% extends "layout.html"%}
 {% block content %}
-<form class="form-signin" method="POST" action="">
+<form class="form-create" method="POST" action="">
   {{ form.hidden_tag() }}
   <fieldset class="form-group">
-    <legend class="border-bottom mb-4">Enter Branch Details</legend>
-    <div class="form-group">
-      {{ form.name.label(class="form-control-label") }}
-      {{ form.name(class="form-control form-control-lg") }}
-    </div>
-    <div class="form-group">
-      {{ form.location.label(class="form-control-label") }}
-      {{ form.location(class="form-control form-control-lg") }}
-    </div>
-    <div class="form-group">
-      {{ form.width.label(class="form-control-label") }}
-      {{ form.width(class="form-control form-control-lg") }}
-    </div>
-    <div class="form-group">
-      {{ form.length.label(class="form-control-label") }}
-      {{ form.length(class="form-control form-control-lg") }}
-    </div>
-    <div class="form-group">
-      {{ form.height.label(class="form-control-label") }}
-      {{ form.height(class="form-control form-control-lg") }}
+    <div class="row">
+      <div class="col-md-6">
+        <legend class="border-bottom">Enter Required Branch Details</legend>
+        <div class="form-group">
+          {{ form.name.label(class="form-control-label") }}
+          {{ form.name(class="form-control form-control-lg") }}
+        </div>
+        <div class="form-group">
+          {{ form.location.label(class="form-control-label") }}
+          {{ form.location(class="form-control form-control-lg") }}
+        </div>
+        <div class="form-group">
+          {{ form.contact.label(class="form-control-label") }}
+          {{ form.contact(class="form-control form-control-lg") }}
+        </div>
+      </div>
+      <div class="col-md-6">
+        <legend class="border-bottom">Add Additional Requirements</legend>
+        <div class="form-group">
+          {{ form.requirement.label(class="form-control-label") }}
+          {{ form.requirement(class="form-control form-control-lg") }}
+        </div>
+        <div class="form-group">
+          {{ form.description.label(class="form-control-label") }}
+          {{ form.description(class="form-control form-control-lg") }}
+        </div>
+        <div class="form-group">
+          {{ form.addEditClearRequirement(class="btn btn-outline-info btn-block") }}
+        </div>
+      </div>
     </div>
   </fieldset>
+  <table class="table">
+        <tr>
+            <thead>
+                <th scope="col">Requirement</th>
+                <th scope="col">Description/Value</th>
+            </thead>
+        </tr>
+      {% for requirement in requirements %}
+        <tr  scope="row">
+            <td>{{ requirement }}</td>
+            <td>{{ requirements[requirement] }}</td>
+        </tr>
+      {% endfor %}
+  </table>
+  <div id="hiddenDiv" style="display: none;">
+    {{ form.branchRequirements(class="form-control form-control-lg") }}
+  </div>
   <div class="form-group">
     {{ form.submit(class="btn btn-outline-info btn-block") }}
   </div>

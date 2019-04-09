@@ -1,8 +1,8 @@
 from flask import Flask, render_template, url_for, flash, redirect, request
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
-from wtforms.validators import DataRequired, Length
-from flask_wtf import FlaskForm
+from ui import Forms
+import json
 import requests
+
 
 app = Flask(__name__)
 
@@ -13,36 +13,9 @@ pword = 'admin'
 url = 'http://10.216.202.10:5000'
 
 
-class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    submit = SubmitField('Log In')
-
-
-class AddForm(FlaskForm):
-    name = StringField('Branch Name', validators=[DataRequired(), Length(min=2, max=20)])
-    location = StringField('Location', validators=[DataRequired(), Length(min=2, max=20)])
-    width = StringField('Width', validators=[DataRequired(), Length(min=1, max=20)])
-    length = StringField('Length', validators=[DataRequired(), Length(min=1, max=20)])
-    height = StringField('Height', validators=[DataRequired(), Length(min=1, max=20)])
-
-    submit = SubmitField('Create')
-
-
-class UpdateForm(FlaskForm):
-    name = StringField('Branch Name')
-    location = StringField('Location')
-    width = StringField('Width')
-    length = StringField('Length')
-    height = StringField('Height')
-
-    submit = SubmitField('Update')
-    delete = SubmitField('Delete')
-
-
 @app.route("/login/", methods=['GET', 'POST'])
 def login():
-    form = LoginForm()
+    form = Forms.LoginForm()
     if form.validate_on_submit():
         if form.username.data == uname and form.password.data == pword:
             flash('Successfully Logged in', 'success')
@@ -56,21 +29,44 @@ def login():
 
 @app.route("/create/", methods=['GET', 'POST'])
 def create():
-    form = AddForm()
-    if form.validate_on_submit():
-        flash('Branch Created', 'success')
-        urlpost = url+"/requirement"
-        branch = {
-            'name': form.name.data,
-            'location': form.location.data,
-            'width': form.width.data,
-            'length': form.length.data,
-            'height': form.height.data
-        }
-        requests.post(urlpost, json=branch)
-        return redirect(url_for('home'))
+    requirements = {}
+    form = Forms.AddForm()
+    if 'addEditClearRequirement' in request.form:
+        if form.validate_on_submit():
+            if form.requirement.data == "" and form.description.data == "":
+                requirements = {}
+                form.branchRequirements.data = ""
+            elif form.description.data == "" and form.requirement.data != "" and form.branchRequirements.data != "":
+                requirements = json.loads(form.branchRequirements.data)
+                del requirements[form.requirement.data]
+                form.requirement.data = ""
+                form.description.data = ""
+                form.branchRequirements.data = json.dumps(requirements)
+            elif form.description.data != "" and form.requirement.data == "" and form.branchRequirements.data != "":
+                print('here')
+                requirements = json.loads(form.branchRequirements.data)
+            else:
+                print('last')
+                if form.branchRequirements.data != "":
+                    requirements = json.loads(form.branchRequirements.data)
+                requirements[form.requirement.data] = form.description.data
+                form.requirement.data = ""
+                form.description.data = ""
+                form.branchRequirements.data = json.dumps(requirements)
+            return render_template("create.html", form=form, requirements=requirements)
+    if 'submit' in request.form:
+        if form.validate_on_submit():
+            flash('Branch Created', 'success')
+            urlpost = url+"/requirement"
+            if form.branchRequirements.data != "":
+                requirements = json.loads(form.branchRequirements.data)
+            requirements['name'] = form.name.data
+            requirements['location'] = form.location.data
+            requirements['contact'] = form.contact.data
+            requests.post(urlpost, json=requirements)
+            return redirect(url_for('home'))
 
-    return render_template("create.html", form=form)
+    return render_template("create.html", form=form, requirements=requirements)
 
 
 @app.route("/")
@@ -86,10 +82,7 @@ def home():
             {
                 'id': doc['_id']["$oid"],
                 'name': doc['name'],
-                'location': doc['location'],
-                'width': doc['width'],
-                'length': doc['length'],
-                'height': doc['height']
+                'location': doc['location']
             }
         )
     return render_template("home.html", branches=branches)
@@ -97,7 +90,7 @@ def home():
 
 @app.route("/branch/<branchid>", methods=['GET', 'POST'])
 def update(branchid):
-    form = UpdateForm()
+    form = Forms.UpdateForm()
     if 'submit' in request.form:
         if form.validate_on_submit():
             urlput = url+"/requirement"
@@ -116,7 +109,7 @@ def update(branchid):
             print(r.status_code)
             print(r.content)
             flash('Successfully Updated', 'success')
-            return redirect(url_for('home'))
+
         else:
             print('helloworld')
     elif 'delete' in request.form:
