@@ -1,0 +1,2 @@
+---
+hosts: ['10.0.1.201      web.internal.tld', '10.0.1.202      api.internal.tld']
