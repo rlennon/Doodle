@@ -76,7 +76,7 @@
 
 * A normal user can submit a request to delete a branch from the system by entering the branch name & clicking the Delete Branch button.
 
-* The request then stays in the system until an Administrator user decides whether to delete the branch or not.7
+* The request then stays in the system until an Administrator user decides whether to delete the branch or not.
 
 **Audit Notes**
 
