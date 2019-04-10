@@ -81,9 +81,15 @@ the client enters details it should not be able to be changed by the client.
 
 ## Risk Register
 
-Please see our list of Risks
+These are the current Risks on the project, re-aligned on a weekly basis
 
-//TODO: Embed query here?
+- Infrastructure proving to be a real problem, may block being able to release software
+- Team is finding itself to be running short on time due to other work and study commitments
+- No working software in production yet
+- Unknown technology choices has led to a lot of upskilling required
+- Changing / ambiguous requirements
+- Talk of the company being bought out has raised concerns
+- Lack of rights for toolsets chosen has hindered progress and ability to deliver
 
 ## Tenants of Design
 

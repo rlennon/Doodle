@@ -1,0 +1,38 @@
+{% extends "layout.html"%}
+{% block content %}
+<form class="form-signin" method="POST" action="">
+  {{ form.hidden_tag() }}
+  <fieldset class="form-group">
+    <legend class="border-bottom mb-4">Update Branch Details</legend>
+    <div class="form-group">
+      {{ form.name.label(class="form-control-label") }}
+        <i>: {{ details.name }}</i>
+      {{ form.name(class="form-control form-control-lg") }}
+    </div>
+    <div class="form-group">
+      {{ form.location.label(class="form-control-label") }}
+        <i>: {{ details.location }}</i>
+      {{ form.location(class="form-control form-control-lg") }}
+    </div>
+    <div class="form-group">
+      {{ form.width.label(class="form-control-label") }}
+        <i>: {{ details.width }}</i>
+      {{ form.width(class="form-control form-control-lg") }}
+    </div>
+    <div class="form-group">
+      {{ form.length.label(class="form-control-label") }}
+        <i>: {{ details.length }}</i>
+      {{ form.length(class="form-control form-control-lg") }}
+    </div>
+    <div class="form-group">
+      {{ form.height.label(class="form-control-label") }}
+        <i>: {{ details.height }}</i>
+      {{ form.height(class="form-control form-control-lg") }}
+    </div>
+  </fieldset>
+  <div class="form-group">
+    {{ form.submit(class="btn btn-outline-info btn-block") }}
+    {{ form.delete(class="btn btn-outline-info btn-block") }}
+  </div>
+</form>
+{% endblock content %}
