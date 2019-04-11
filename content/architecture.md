@@ -48,3 +48,23 @@ The application will reside on 2 VMs within the LYIT-CDC datacenter. VM1 will se
 ## Jenkins Installation And Configuration
 
 [Jenkins Installation And Configuration](./jenkins.md)
+
+## Artifactory setup
+
+* Ask for login for ubuntu and artifactory, not putting it on github.
+
+* Once in ubuntu go to terminal and log in as root. -> sudo su
+
+* Once in root go to. -> cd /opt/jfrog/artifactory-oss-6.9.1/bin
+
+* Run. -> ./installService.sh
+
+* Once in bin, type systemctl start artifactory.service
+
+* Artifactory should start up. Then look for youre ip address by typing. -> ip addr show
+
+* use ip address with 8081 and put the following in a browser,example -> 172.28.25.118:8081
+
+* When you see artifactory you should type in the username and password, which will be given if asked.
+
+* To stop Artifactory. -> systemctl stop artifactory.service
