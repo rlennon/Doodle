@@ -15,7 +15,7 @@ import
   	stage('Ansible linting') {
   		steps {
 			  sh 'echo "*************************Ansible Linting*************************"'
-        sh 'ansible-lint ${WORKSPACE}/src/infra/ansible/*.yml'
+        		  sh 'ansible-lint ${WORKSPACE}/src/infra/ansible/*.yml'
  		  }
 	  }
   }
