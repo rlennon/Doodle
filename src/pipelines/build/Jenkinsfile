@@ -1,14 +1,11 @@
-@Library('utils') _
-
 pipeline {
-import
   agent any
   stages {
     stage('GitHub Pull') {
 	  	steps {
 		  	sh 'echo "*************************GitHub Pull*************************"'
 				script {
-						SCM.SCM_checkout(vars/POC)
+					    scm_checkout.SCM_checkout(src/POC)
 				}
 			}	
 	  }
