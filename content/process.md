@@ -122,12 +122,3 @@ All tasks should be moved to **In Progress** when being worked on & moved to **D
 ### Versioning
 
 Versioning will follow [Semantic guidelines](https://semver.org/)
-
-## Consideration
-
-- Frameworks
-- Database
-- Database persistance technology 
-- Define the buisness Requirements
-- Named queries and database triggers for security 
-- Regex for cleansing and validation of data before sending to the database.
