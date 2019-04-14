@@ -38,11 +38,13 @@ Urgency is the time it takes to an incident to have a significant impact on busi
 ## Priorities
 Priority will be based on the impact and urgency of the issue and will be used to identify the required timeframe for remediation actions to take place. The assignement of a priority code will determine how the incident will be taken care of our support staff.
 
-Priority | Name | Description | Resolution
-P1 | Critical | Interruption making a critical functionality inaccessible or a complete network interruption causing a severe impact on services availability. There is no possible alternative. | 4 hours
-P2 | Important | Critical functionality or network access interrupted, degraded or unusable, having a severe impact on services availability. No acceptable alternative is possible. | 24 hours
-P3 | Normal | Non-critical function or procedure, unusable or hard to use having an operational impact, but with no direct impact on services availability. A workaround is available. | 3 days
-P4 | Low | Application or personal procedure unusable, where a workaround is available or a repair is possible. | 5 days
+|Priority|Name|Description|Resolution|
+|---|---|---|---|
+|P1|Critical|Interruption making critical functionality inaccessible or a complete network interruption causing a severe impact on services availability. There is no possible alternative. | 4 hours
+|P2 | Important | Critical functionality or network access interrupted, degraded or unusable, having a severe impact on services availability. No acceptable alternative is possible. | 24 hours|
+|P3 | Normal | Non-critical function or procedure unusable or hard to use having an operational impact, but with no direct impact on services availability. A workaround is available. | 3 days|
+|P4 | Low | Application or personal procedure unusable, where a workaround is available or a repair is possible. | 5 days|
+
 
 ## Support Includes
 
