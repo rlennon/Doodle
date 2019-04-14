@@ -2,7 +2,9 @@
 
 M.Sc. DevOps Team 1
 
-daivops ek lakshy nahin hai, lekin nity sudhaar kee ek kabhee na khatm hone vaalee prakriya hai
+Inspiration Quote
+
+**"daivops ek lakshy nahin hai, lekin nity sudhaar kee ek kabhee na khatm hone vaalee prakriya hai"**
 
 # Table of Contents
 
@@ -69,6 +71,7 @@ the client enters details it should not be able to be changed by the client.
 - Slack: https://lyit.slack.com/messages/GGGLUP8H3
 - Jira: https://studentjira.lyit.ie/secure/RapidBoard.jspa?projectKey=DOODLE&rapidView=51&view=planning.nodetail
 - GitHub: https://github.com/rlennon/Doodle
+- Buy-Out Presentation: https://prezi.com/view/munfrET5LED1M1U3fWTn/
 
 ### For more information visit our other sections
 
