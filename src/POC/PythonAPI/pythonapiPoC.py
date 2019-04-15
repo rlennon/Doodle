@@ -10,7 +10,7 @@ import json
 
 app = Flask(__name__)
 api = Api(app)
-client = pymongo.MongoClient('mongodb://192.168.0.12:27017/')
+client = pymongo.MongoClient('mongodb://192.168.1.10:27017/')
 db = client["doodletestDB"]
 
 
@@ -23,15 +23,75 @@ def index():
         return markdown.markdown(content)
 
 
+def db_find():
+    docs = []
+    try:
+        for doc in db.requirement.find():
+            docs.append(doc)
+
+    except pymongo.errors.ConnectionFailure as e:
+        err = {str(e)}
+        return err, 500
+
+    return docs, 200
+
+
+def db_find_one(doc_id):
+    try:
+        doc = db.requirement.find_one({"_id": ObjectId(doc_id)})
+
+    except pymongo.errors.ConnectionFailure as e:
+        err = {str(e)}
+        return err, 500
+
+    return doc, 200
+
+
+def db_insert_one(data):
+    try:
+        doc = db.requirement.insert_one(data)
+        doc_id = doc.inserted_id
+    except pymongo.errors.ConnectionFailure as e:
+        err = {str(e)}
+        return err, 500
+
+    return doc_id, 201
+
+
+def db_delete_one(doc_id):
+    try:
+        result = db.requirement.delete_one({"_id": ObjectId(doc_id)})
+        if result.raw_result["n"] == 0 and result.raw_result["ok"] == 1:
+            return "Not Found", 404
+        elif result.raw_result["ok"] == 1:
+            return "OK", 204
+
+    except pymongo.errors.ConnectionFailure as e:
+        return {str(e)}, 500
+
+
+def db_replace_one(doc_id, data):
+    try:
+        doc = db.requirement.replace_one({'_id': ObjectId(doc_id)}, data).raw_result
+        if doc["n"] == 0 and doc["ok"] == 1:
+            status_code = 404
+        elif doc["ok"] == 1:
+            status_code = 204
+
+    except pymongo.errors.ConnectionFailure as e:
+        return {str(e)}, 500
+
+    return doc, status_code
+
+
 # Returns a collection of documents
 class RequirementList(Resource):
     # Returns all documents in the requirement collection
     @staticmethod
     def get():
-        docs = []
-        for doc in db.requirement.find():
-            docs.append(doc)
-        resp = json.loads(dumps(docs))
+        docs, status = db_find()
+        resp = Response(dumps(docs), mimetype='application/json')
+        resp.status_code = status
         return resp
 
 
@@ -42,30 +102,27 @@ class Requirement(Resource):
     def post():
         js = json_util.dumps(request.get_json())
         data = json_util.loads(js)
-        doc = db.requirement.insert_one(data)
-        resp = jsonify(json.loads(dumps(doc.inserted_id)))
-        resp.status_code = 201
+        doc_id, status = db_insert_one(data)
+        resp = jsonify(json.loads(dumps(doc_id)))
+        resp.status_code = status
         return resp
 
     @staticmethod
     # Find document
     def get():
         doc_id = request.args.get('_Id')
-        doc = db.requirement.find_one({"_id": ObjectId(doc_id)})
-        resp = json.loads(dumps(doc))
+        doc, status = db_find_one(doc_id)
+        resp = Response(dumps(doc), mimetype='application/json')
+        resp.status_code = status
         return resp
 
     @staticmethod
     # Delete Document
     def delete():
         doc_id = request.args.get('_Id')
-        query = {"_id": ObjectId(doc_id)}
-        result = db.requirement.delete_one(query)
-        resp = Response()
-        if result.raw_result["n"] == 0 and result.raw_result["ok"] == 1:
-            resp.status_code = 404
-        elif result.raw_result["ok"] == 1:
-            resp.status_code = 204
+        resp, status = db_delete_one(doc_id)
+        resp = Response(dumps(resp), mimetype='application/json')
+        resp.status_code = status
         return resp
 
     @staticmethod
@@ -74,12 +131,9 @@ class Requirement(Resource):
         js = json_util.dumps(request.get_json())
         data = json_util.loads(js)
         doc_id = data["_id"]
-        result = db.requirement.replace_one({'_id': ObjectId(doc_id)}, data)
-        resp = Response()
-        if result.raw_result["n"] == 0 and result.raw_result["ok"] == 1:
-            resp.status_code = 404
-        elif result.raw_result["ok"] == 1:
-            resp.status_code = 204
+        resp, status = db_replace_one(doc_id, data)
+        resp = Response(dumps(resp), mimetype='application/json')
+        resp.status_code = status
         return resp
 
 
