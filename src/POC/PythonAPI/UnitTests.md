@@ -22,4 +22,4 @@ Jenkins requires the following plugins:
 1. Add build step - Python Builder
 2. Python version should be Python3.6 (This can be changed in Manage Jenkins - Global Tool Configuration)
 3. Nature: Shell
-4. Command: nosetests /var/lib/jenkins/workspace/Doodle/src/POC/PythonAPI/UnitTests (replace with path to workspace if different)
+4. Command: nosetests --with-coverage --cover-erase --cover-package=PythonAPI --cover-html /var/lib/jenkins/workspace/Doodle/src/POC/PythonAPI (replace with path to workspace if different)
