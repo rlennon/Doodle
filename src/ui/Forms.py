@@ -27,7 +27,8 @@ class UpdateForm(FlaskForm):
     requirement = StringField('Requirement')
     description = TextAreaField('Description/Value')
     branchRequirements = TextAreaField('branchRequirements')
-    submit = SubmitField('Update Branch')
+    update = SubmitField('Update Branch')
+    editBranch = SubmitField('Edit Branch')
     delete = SubmitField('Delete Branch')
     addEditClearRequirement = SubmitField('Add / Edit / Clear Requirement')
 

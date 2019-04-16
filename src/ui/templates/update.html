@@ -5,21 +5,40 @@
   <fieldset class="form-group">
     <div class="row">
       <div class="col-md-6">
-        <legend class="border-bottom">Update Required Branch Details</legend>
+        <legend class="border-bottom">
+          {% if edit == "true" %}
+          Update Required Branch Details
+          {% elif edit == "false" %}
+          View Branch Details
+          {% endif %}
+        </legend>
         <div class="form-group">
           {{ form.name.label(class="form-control-label") }}
-          {{ form.name(class="form-control form-control-lg") }}
+          {% if edit == "true" %}
+          {{ form.name(class="form-control form-control-lg", readonly=false) }}
+          {% elif edit == "false" %}
+          {{ form.name(class="form-control form-control-lg", readonly=true) }}
+          {% endif %}
         </div>
         <div class="form-group">
           {{ form.location.label(class="form-control-label") }}
-          {{ form.location(class="form-control form-control-lg") }}
+          {% if edit == "true" %}
+          {{ form.location(class="form-control form-control-lg", readonly=false) }}
+          {% elif edit == "false" %}
+          {{ form.location(class="form-control form-control-lg", readonly=true) }}
+          {% endif %}
         </div>
         <div class="form-group">
           {{ form.contact.label(class="form-control-label") }}
-          {{ form.contact(class="form-control form-control-lg") }}
+          {% if edit == "true" %}
+          {{ form.contact(class="form-control form-control-lg", readonly=false) }}
+          {% elif edit == "false" %}
+          {{ form.contact(class="form-control form-control-lg", readonly=true) }}
+          {% endif %}
         </div>
       </div>
       <div class="col-md-6">
+        {% if edit == "true" %}
         <legend class="border-bottom">Update Additional Requirements</legend>
         <div class="form-group">
           {{ form.requirement.label(class="form-control-label") }}
@@ -32,6 +51,7 @@
         <div class="form-group">
           {{ form.addEditClearRequirement(class="btn btn-outline-info btn-block") }}
         </div>
+        {% endif %}
       </div>
     </div>
   </fieldset>
@@ -49,14 +69,20 @@
         </tr>
       {% endfor %}
   </table>
-  <div id="hiddenDiv" style="display: none;">
+  <div id="DoNotDelete" style="display: none;">
     {{ form.branchRequirements(class="form-control form-control-lg") }}
   </div>
+  {% if edit == "false" %}
   <div class="form-group">
-    {{ form.submit(class="btn btn-outline-info btn-block") }}
+    {{ form.editBranch(class="btn btn-outline-info btn-block") }}
+  </div>
+  {% elif edit == "true" %}
+  <div class="form-group">
+    {{ form.update(class="btn btn-outline-info btn-block") }}
   </div>
   <div class="form-group">
     {{ form.delete(class="btn btn-outline-info btn-block") }}
   </div>
+  {% endif %}
 </form>
 {% endblock content %}

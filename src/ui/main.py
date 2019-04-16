@@ -29,7 +29,8 @@ def home():
             {
                 'id': doc['_id']["$oid"],
                 'name': doc['name'],
-                'location': doc['location']
+                'location': doc['location'],
+                'contact': doc['contact']
             }
         )
     return render_template("home.html", branches=branches)
@@ -127,8 +128,8 @@ def update(branchid):
                 form.requirement.data = ""
                 form.description.data = ""
                 form.branchRequirements.data = json.dumps(requirements)
-            return render_template("update.html", form=form, requirements=requirements)
-    elif 'submit' in request.form:
+            return render_template("update.html", form=form, requirements=requirements, edit="true")
+    elif 'update' in request.form:
         if form.validate_on_submit():
             flash('Branch Updated', 'success')
             urlput = url+"/requirement"
@@ -162,7 +163,10 @@ def update(branchid):
         else:
             form.branchRequirements.data = ''
 
-    return render_template("update.html", form=form, requirements=requirements)
+        if 'editBranch' in request.form:
+            return render_template("update.html", form=form, requirements=requirements, edit="true")
+
+    return render_template("update.html", form=form, requirements=requirements, edit="false")
 
 
 def deleteAction(branchid):
