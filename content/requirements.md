@@ -77,3 +77,35 @@
 * A normal user can submit a request to delete a branch from the system by entering the branch name & clicking the Delete Branch button.
 
 * The request then stays in the system until an Administrator user decides whether to delete the branch or not.
+
+**Audit Notes**
+
+* Do we have Epics/User stories created?
+
+* Prioritisation of presentation, understand your audience.
+
+* Are you actually going to be able to produce a product in time => process
+
+* OSS best practices, who defines, how to document those.
+
+* Would have been good to explain customised agile. Won’t be able to hit the ground running for new people entering the team. Employee flight concerns.
+
+* Appreciation for GitHub documentation. However, we aren’t risk driven. Tech driven instead. He doesn’t understand risks/prioritisation of risks.
+
+* Lack of security in the presentation. Security should be considered before testing. Critical issue.
+
+* Story points shouldn’t be connected to time, performance of the individual ruins that.
+
+* Demos should be recorded.
+
+* Knowledge management, how to use GitHub was good, but not a demo. Should have something to do with requirements. Showing satisfaction of requirements.
+
+* Process documentation in other languages.
+
+* Stakeholders identification good. But not all identified.
+
+* Make sure all important info is in GitHub, never just slack. Project should be recoverable from GitHub.
+
+* Requirements traceability and satisfaction..
+
+

@@ -2,15 +2,20 @@
 
 M.Sc. DevOps Team 1
 
+Inspiration Quote
+
+**"daivops ek lakshy nahin hai, lekin nity sudhaar kee ek kabhee na khatm hone vaalee prakriya hai"**
+
 # Table of Contents
 
 - [Doodle](#doodle)
 - [Table of Contents](#table-of-contents)
   - [Introduction!](#introduction)
+    - [Product Owner](#product-owner)
     - [Rockstars](#rockstars)
   - [Project Deadline](#project-deadline)
   - [Project Specification](#project-specification)
-  - [Considerations:](#considerations)
+  - [Considerations](#considerations)
   - [Useful Links](#useful-links)
     - [For more information visit our other sections](#for-more-information-visit-our-other-sections)
   - [Risk Register](#risk-register)
@@ -21,6 +26,10 @@ M.Sc. DevOps Team 1
 
 This is the online repository for the engineering and tech giant **Doodle**. Our current product **Brancher** will be delivered using an Agile methodology that embraces the [DevOps culture](https://martinfowler.com/bliki/DevOpsCulture.html). 
 Please note that our culture embraces change and these documents are treated as living, breathing artefacts that will be continuously updated.
+
+### Product Owner
+
+Ruth G. Lennon
 
 ### Rockstars
 
@@ -48,7 +57,7 @@ files or images which may be sample construction diagrams. Jpgs are fine. Do not
 etc. The administrator should be able to access detailed information and edit as appropriate. Once
 the client enters details it should not be able to be changed by the client.
 
-## Considerations:
+## Considerations
 
 - Frameworks
 - Database
@@ -62,6 +71,7 @@ the client enters details it should not be able to be changed by the client.
 - Slack: https://lyit.slack.com/messages/GGGLUP8H3
 - Jira: https://studentjira.lyit.ie/secure/RapidBoard.jspa?projectKey=DOODLE&rapidView=51&view=planning.nodetail
 - GitHub: https://github.com/rlennon/Doodle
+- Buy-Out Presentation: https://prezi.com/view/munfrET5LED1M1U3fWTn/
 
 ### For more information visit our other sections
 

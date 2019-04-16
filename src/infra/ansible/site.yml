@@ -1,0 +1,62 @@
+---
+- hosts: all
+  user: "{{ deploy_user }}"
+  become: yes
+  tasks:
+
+  - name: Install packages
+    apt:
+      name: "{{ default_packages }}"
+
+  - name: Clone the Repo
+    git: clone=yes repo="{{ repo }}" dest="{{ install_path }}"
+
+  - name: Create a virtual environment
+    command: python3.5 -m venv "{{ install_path }}"/env creates="{{ install_path }}/env"
+
+  - name: install requirements
+    pip:
+      requirements: "{{ requirements_path }}"
+      virtualenv: "{{ install_path }}/env"
+
+  - name: insert hosts entry
+    lineinfile:
+      path: /etc/hosts
+      line: "{{ item }}"
+    with_items: "{{ hosts }}"
+
+- hosts: doodle_web
+  user: "{{ deploy_user }}"
+  become: yes
+  tasks:
+
+  - name: Copy systemd script
+    template: src=systemd_config_web dest=/lib/systemd/system/doodleweb.service
+
+  - name: Start API
+    service: name=doodleweb state=started enabled=yes
+
+- hosts: doodle_api
+  user: "{{ deploy_user }}"
+  become: yes
+  tasks:
+
+  - name: Add GPG key
+    apt_key:
+      id: "7F0CEB10"
+      keyserver: "keyserver.ubuntu.com"
+
+  - name: Configure APT repository
+    apt_repository:
+      repo: "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse"
+      update_cache: true
+
+  - name: Install packages
+    apt:
+      name: mongodb
+
+  - name: Copy systemd script
+    template: src=systemd_config_api dest=/lib/systemd/system/doodleapi.service
+
+  - name: Start API
+    service: name=doodleapi state=started enabled=yes
