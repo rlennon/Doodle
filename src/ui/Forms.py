@@ -16,16 +16,18 @@ class AddForm(FlaskForm):
     requirement = StringField('Requirement')
     description = TextAreaField('Description/Value')
     branchRequirements = TextAreaField('branchRequirements')
-    submit = SubmitField('Create')
+    submit = SubmitField('Create Branch')
     addEditClearRequirement = SubmitField('Add / Edit / Clear Requirement')
 
 
 class UpdateForm(FlaskForm):
-    name = StringField('Branch Name')
-    location = StringField('Location')
-    width = StringField('Width')
-    length = StringField('Length')
-    height = StringField('Height')
+    name = StringField('Branch Name', validators=[DataRequired(), Length(min=2, max=20)])
+    location = TextAreaField('Location', validators=[DataRequired(), Length(min=2, max=200)])
+    contact = StringField('Contact', validators=[DataRequired(), Length(min=1, max=20)])
+    requirement = StringField('Requirement')
+    description = TextAreaField('Description/Value')
+    branchRequirements = TextAreaField('branchRequirements')
+    submit = SubmitField('Update Branch')
+    delete = SubmitField('Delete Branch')
+    addEditClearRequirement = SubmitField('Add / Edit / Clear Requirement')
 
-    submit = SubmitField('Update')
-    delete = SubmitField('Delete')

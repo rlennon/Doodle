@@ -12,6 +12,28 @@ uname = 'admin'
 pword = 'admin'
 url = 'http://10.216.202.10:5000'
 
+@app.route("/")
+@app.route("/home")
+def home():
+    urlget = url+"/requirements"
+    response = requests.get(urlget)
+    col = response.json()
+    for branch in col:
+        for item in branch:
+            print("\'{}\': [\'{}\']".format(item, branch[item]))
+
+    branches = []
+
+    for doc in col:
+        branches.append(
+            {
+                'id': doc['_id']["$oid"],
+                'name': doc['name'],
+                'location': doc['location']
+            }
+        )
+    return render_template("home.html", branches=branches)
+
 
 @app.route("/login/", methods=['GET', 'POST'])
 def login():
@@ -33,22 +55,25 @@ def create():
     form = Forms.AddForm()
     if 'addEditClearRequirement' in request.form:
         if form.validate_on_submit():
+            if form.branchRequirements.data != "":
+                requirements = json.loads(form.branchRequirements.data)
+            else:
+                requirements = {}
+
             if form.requirement.data == "" and form.description.data == "":
                 requirements = {}
                 form.branchRequirements.data = ""
-            elif form.description.data == "" and form.requirement.data != "" and form.branchRequirements.data != "":
-                requirements = json.loads(form.branchRequirements.data)
+
+            elif form.description.data == "" and form.requirement.data != "" and form.branchRequirements.data != "" \
+                    and form.requirement.data in requirements:
                 del requirements[form.requirement.data]
                 form.requirement.data = ""
                 form.description.data = ""
                 form.branchRequirements.data = json.dumps(requirements)
-            elif form.description.data != "" and form.requirement.data == "" and form.branchRequirements.data != "":
-                print('here')
-                requirements = json.loads(form.branchRequirements.data)
+
+            elif form.description.data != "" and form.requirement.data == "":
+                pass
             else:
-                print('last')
-                if form.branchRequirements.data != "":
-                    requirements = json.loads(form.branchRequirements.data)
                 requirements[form.requirement.data] = form.description.data
                 form.requirement.data = ""
                 form.description.data = ""
@@ -69,67 +94,75 @@ def create():
     return render_template("create.html", form=form, requirements=requirements)
 
 
-@app.route("/")
-@app.route("/home")
-def home():
-    urlget = url+"/requirements"
-    response = requests.get(urlget)
-    col = response.json()
-    branches = []
-
-    for doc in col:
-        branches.append(
-            {
-                'id': doc['_id']["$oid"],
-                'name': doc['name'],
-                'location': doc['location']
-            }
-        )
-    return render_template("home.html", branches=branches)
-
-
 @app.route("/branch/<branchid>", methods=['GET', 'POST'])
 def update(branchid):
     form = Forms.UpdateForm()
-    if 'submit' in request.form:
-        if form.validate_on_submit():
-            urlput = url+"/requirement"
-            updatedbranch = {
-                'name': form.name.data,
-                '_id': {
-                    '$oid': branchid
-                },
-                'location': form.location.data,
-                'width': form.width.data,
-                'length': form.length.data,
-                'height': form.height.data,
-                'lan connections': '16'
-            }
-            r = requests.put(urlput, json=updatedbranch)
-            print(r.status_code)
-            print(r.content)
-            flash('Successfully Updated', 'success')
 
-        else:
-            print('helloworld')
+    urlget = url + "/requirement?_Id=%s" % branchid
+    response = requests.get(urlget)
+    branch = response.json()
+    id = branch['_id']
+    if 'addEditClearRequirement' in request.form:
+        if form.validate_on_submit():
+            if form.branchRequirements.data != "":
+                requirements = json.loads(form.branchRequirements.data)
+            else:
+                requirements = {}
+
+            if form.requirement.data == "" and form.description.data == "":
+                requirements = {}
+                form.branchRequirements.data = ""
+
+            elif form.description.data == "" and form.requirement.data != "" and form.branchRequirements.data != "" \
+                    and form.requirement.data in requirements:
+                del requirements[form.requirement.data]
+                form.requirement.data = ""
+                form.description.data = ""
+                form.branchRequirements.data = json.dumps(requirements)
+
+            elif form.description.data != "" and form.requirement.data == "":
+                pass
+            else:
+                requirements[form.requirement.data] = form.description.data
+                form.requirement.data = ""
+                form.description.data = ""
+                form.branchRequirements.data = json.dumps(requirements)
+            return render_template("update.html", form=form, requirements=requirements)
+    elif 'submit' in request.form:
+        if form.validate_on_submit():
+            flash('Branch Updated', 'success')
+            urlput = url+"/requirement"
+            requirements = {}
+            if form.branchRequirements.data != "":
+                requirements = json.loads(form.branchRequirements.data)
+            requirements['_id'] = id
+            requirements['name'] = form.name.data
+            requirements['location'] = form.location.data
+            requirements['contact'] = form.contact.data
+            requests.put(urlput, json=requirements)
+            return redirect(url_for('home'))
     elif 'delete' in request.form:
         deleteAction(branchid)
         flash('Successfully Deleted', 'success')
         return redirect(url_for('home'))
+    else:
+        requirements = {}
+        for requirement in branch:
+            requirements[requirement] = branch[requirement]
 
-    urlget = url+"/requirement?_Id=%s" % branchid
-    response = requests.get(urlget)
-    col = response.json()
+        form.name.data = requirements['name']
+        del requirements['name']
+        form.location.data = requirements['location']
+        del requirements['location']
+        form.contact.data = requirements['contact']
+        del requirements['contact']
+        del requirements['_id']
+        if requirements:
+            form.branchRequirements.data = json.dumps(requirements)
+        else:
+            form.branchRequirements.data = ''
 
-    details = {
-        'id': col['_id']["$oid"],
-        'name': col['name'],
-        'location': col['location'],
-        'width': col['width'],
-        'length': col['length'],
-        'height': col['height']
-    }
-    return render_template("update.html", details=details, form=form)
+    return render_template("update.html", form=form, requirements=requirements)
 
 
 def deleteAction(branchid):
