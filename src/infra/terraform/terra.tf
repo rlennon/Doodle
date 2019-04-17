@@ -32,9 +32,9 @@ data "vsphere_network" "network" {
 
 # here we copy premade ubuntu disk image
 resource "vsphere_file" "vmdk-01" {
-  datacenter = "${data.vsphere_datacenter.dc.name}" 
+  datacenter = "${data.vsphere_datacenter.dc.name}"
   datastore = "${data.vsphere_datastore.datastore.name}"
-  source_datacenter = "${data.vsphere_datacenter.dc.name}" 
+  source_datacenter = "${data.vsphere_datacenter.dc.name}"
   source_datastore = "${data.vsphere_datastore.datastore.name}"
   create_directories = "true"
   source_file = "${var.vsphere_source_file}"
@@ -42,14 +42,35 @@ resource "vsphere_file" "vmdk-01" {
 }
 
 resource "vsphere_file" "vmdk-02" {
-  datacenter = "${data.vsphere_datacenter.dc.name}" 
+  datacenter = "${data.vsphere_datacenter.dc.name}"
   datastore = "${data.vsphere_datastore.datastore.name}"
-  source_datacenter = "${data.vsphere_datacenter.dc.name}" 
+  source_datacenter = "${data.vsphere_datacenter.dc.name}"
   source_datastore = "${data.vsphere_datastore.datastore.name}"
   create_directories = "true"
   source_file = "${var.vsphere_source_file}"
   destination_file = "/doodle-web/disk0.vmdk"
 }
+
+resource "vsphere_file" "vmdk-03" {
+  datacenter = "${data.vsphere_datacenter.dc.name}"
+  datastore = "${data.vsphere_datastore.datastore.name}"
+  source_datacenter = "${data.vsphere_datacenter.dc.name}"
+  source_datastore = "${data.vsphere_datastore.datastore.name}"
+  create_directories = "true"
+  source_file = "${var.vsphere_source_file}"
+  destination_file = "/doodle-api-stage/disk0.vmdk"
+}
+
+resource "vsphere_file" "vmdk-04" {
+  datacenter = "${data.vsphere_datacenter.dc.name}"
+  datastore = "${data.vsphere_datastore.datastore.name}"
+  source_datacenter = "${data.vsphere_datacenter.dc.name}"
+  source_datastore = "${data.vsphere_datastore.datastore.name}"
+  create_directories = "true"
+  source_file = "${var.vsphere_source_file}"
+  destination_file = "/doodle-web-stage/disk0.vmdk"
+}
+
 
 # here we create VMs
 resource "vsphere_virtual_machine" "doodle-api" {
@@ -92,3 +113,42 @@ resource "vsphere_virtual_machine" "doodle-web" {
   }
 }
 
+resource "vsphere_virtual_machine" "doodle-web-stage" {
+  name             = "doodle-web-stage"
+  resource_pool_id = "${data.vsphere_resource_pool.pool.id}"
+  datastore_id     = "${data.vsphere_datastore.datastore.id}"
+
+  num_cpus = 2
+  memory   = 1024
+  guest_id = "ubuntu64Guest"
+
+  network_interface {
+    network_id = "${data.vsphere_network.network.id}"
+  }
+  disk {
+    label = "disk0"
+    attach = true
+    path = "/doodle-web-stage/disk0.vmdk"
+    datastore_id     = "${data.vsphere_datastore.datastore.id}"
+  }
+}
+
+resource "vsphere_virtual_machine" "doodle-api-stage" {
+  name             = "doodle-api-stage"
+  resource_pool_id = "${data.vsphere_resource_pool.pool.id}"
+  datastore_id     = "${data.vsphere_datastore.datastore.id}"
+
+  num_cpus = 2
+  memory   = 1024
+  guest_id = "ubuntu64Guest"
+
+  network_interface {
+    network_id = "${data.vsphere_network.network.id}"
+  }
+  disk {
+    label = "disk0"
+    attach = true
+    path = "/doodle-api-stage/disk0.vmdk"
+    datastore_id     = "${data.vsphere_datastore.datastore.id}"
+  }
+}
