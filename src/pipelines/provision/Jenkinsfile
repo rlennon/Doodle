@@ -1,0 +1,28 @@
+  @Library('utils') _
+
+pipeline {
+import
+  agent any
+  stages {
+    stage('GitHub Pull') {
+	  	steps {
+		  	sh 'echo "*************************GitHub Pull*************************"'
+				script {
+						SCM.SCM_checkout(vars/src)
+				}
+			}
+	  }
+    stage('Ansible linting') {
+    	steps {
+    	  sh 'echo "*************************Ansible Linting*************************"'
+        		  sh 'ansible-lint ${WORKSPACE}/src/infra/ansible/*.yml'
+    	  }
+    }
+    stage('Ansible Prevision: staging') {
+      steps {
+        sh 'echo "*************************Ansible Linting*************************"'
+              sh 'ansible-playbook -i ${WORKSPACE}/src/infra/ansible/hosts-staging.ini ${WORKSPACE}/src/infra/ansible/site.yml'
+      }
+    }
+  }
+}
