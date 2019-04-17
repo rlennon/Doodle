@@ -11,7 +11,7 @@ import json
 app = Flask(__name__)
 api = Api(app)
 
-with open('dev_config.json') as f:
+with open('../dev_config.json') as f:
     config = json.load(f)
 
 client = pymongo.MongoClient(config.get("dbServerEndpoint"))
