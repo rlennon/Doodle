@@ -1,4 +1,4 @@
-@Library('utils') _
+  @Library('utils') _
 
 pipeline {
 import
@@ -18,5 +18,11 @@ import
         		  sh 'ansible-lint ${WORKSPACE}/src/infra/ansible/*.yml'
  		  }
 	  }
+    stage('Ansible Prevision: staging') {
+      steps {
+        sh 'echo "*************************Ansible Linting*************************"'
+              sh 'ansible-playbook -i ${WORKSPACE}/src/infra/ansible/hosts-staging.ini ${WORKSPACE}/src/infra/ansible/site.yml'
+      }
+    }
   }
 }
