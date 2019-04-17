@@ -12,12 +12,12 @@ import
 				}
 			}
 	  }
-  	stage('Ansible linting') {
-  		steps {
-			  sh 'echo "*************************Ansible Linting*************************"'
+    stage('Ansible linting') {
+    	steps {
+    	  sh 'echo "*************************Ansible Linting*************************"'
         		  sh 'ansible-lint ${WORKSPACE}/src/infra/ansible/*.yml'
- 		  }
-	  }
+    	  }
+    }
     stage('Ansible Prevision: staging') {
       steps {
         sh 'echo "*************************Ansible Linting*************************"'
