@@ -1,7 +1,4 @@
-  @Library('utils') _
-
 pipeline {
-import
   agent any
   stages {
     stage('GitHub Pull') {

@@ -1,4 +1,6 @@
 from flask import Flask, render_template, url_for, flash, redirect, request
+
+import os
 from ui import Forms
 import json
 import requests
@@ -8,9 +10,17 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'f9bf78b9a18ce6d46a0cd2b0b86df9da'
 
-uname = 'admin'
-pword = 'admin'
-url = 'http://10.216.202.10:5000'
+if 'DOODLE_CONFIG' in os.environ:
+    filepath = os.environ['DOODLE_CONFIG']
+else:
+    filepath = '../dev_config.json'
+
+with open(filepath) as f:
+    config = json.load(f)
+
+hostIp = config.get("hostIp")
+port = config.get("apiPort")
+url = "http://{}:{}".format(hostIp, port)
 
 @app.route("/")
 @app.route("/home")
@@ -18,9 +28,6 @@ def home():
     urlget = url+"/requirements"
     response = requests.get(urlget)
     col = response.json()
-    for branch in col:
-        for item in branch:
-            print("\'{}\': [\'{}\']".format(item, branch[item]))
 
     branches = []
 
@@ -34,21 +41,6 @@ def home():
             }
         )
     return render_template("home.html", branches=branches)
-
-
-@app.route("/login/", methods=['GET', 'POST'])
-def login():
-    form = Forms.LoginForm()
-    if form.validate_on_submit():
-        if form.username.data == uname and form.password.data == pword:
-            flash('Successfully Logged in', 'success')
-            return redirect(url_for('home'))
-        else:
-            flash('Incorrect Details', 'danger')
-            return redirect(url_for('login'))
-
-    return render_template("login.html", form=form)
-
 
 @app.route("/create/", methods=['GET', 'POST'])
 def create():
