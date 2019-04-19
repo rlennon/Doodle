@@ -4,21 +4,28 @@ pipeline {
     stage('GitHub Pull') {
 	  	steps {
 		  	sh 'echo "*************************GitHub Pull*************************"'
-				script {
-						SCM.SCM_checkout(vars/src)
-				}
+        script {
+          checkout([$class: 'GitSCM',
+            branches: [[name: '*/master']],
+            doGenerateSubmoduleConfigurations: false,
+            extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: "rlennon/doodle/src/infra/ansible"]],
+            submoduleCfg: [],
+            userRemoteConfigs: [[url: 'git@github.com:rlennon/doodle']]
+          ])
+        }
 			}
 	  }
     stage('Ansible linting') {
     	steps {
-    	  sh 'echo "*************************Ansible Linting*************************"'
-        		  sh 'ansible-lint ${WORKSPACE}/src/infra/ansible/*.yml'
+      	  sh 'echo "*************************Ansible Linting*************************"'
+          sh 'cd ${WORKSPACE}/src/infra/ansible'
+          sh 'ansible-lint *.yml'
     	  }
     }
     stage('Ansible Prevision: staging') {
       steps {
-        sh 'echo "*************************Ansible Linting*************************"'
-              sh 'ansible-playbook -i ${WORKSPACE}/src/infra/ansible/hosts-staging.ini ${WORKSPACE}/src/infra/ansible/site.yml'
+        sh 'echo "*************************Ansible Provision: Staging*************************"'
+        sh 'ansible-playbook -i ${WORKSPACE}/src/infra/ansible/hosts-staging.ini ${WORKSPACE}/src/infra/ansible/site.yml'
       }
     }
   }
