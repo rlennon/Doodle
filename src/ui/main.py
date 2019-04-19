@@ -8,9 +8,14 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'f9bf78b9a18ce6d46a0cd2b0b86df9da'
 
-uname = 'admin'
-pword = 'admin'
-url = 'http://10.216.202.10:5000'
+#url = 'http://10.216.202.10:5000'
+
+with open('../dev_config.json') as f:
+    config = json.load(f)
+
+hostIp = config.get("hostIp")
+port = config.get("apiPort")
+url = "http://{}:{}".format(hostIp, port)
 
 @app.route("/")
 @app.route("/home")
@@ -34,21 +39,6 @@ def home():
             }
         )
     return render_template("home.html", branches=branches)
-
-
-@app.route("/login/", methods=['GET', 'POST'])
-def login():
-    form = Forms.LoginForm()
-    if form.validate_on_submit():
-        if form.username.data == uname and form.password.data == pword:
-            flash('Successfully Logged in', 'success')
-            return redirect(url_for('home'))
-        else:
-            flash('Incorrect Details', 'danger')
-            return redirect(url_for('login'))
-
-    return render_template("login.html", form=form)
-
 
 @app.route("/create/", methods=['GET', 'POST'])
 def create():
