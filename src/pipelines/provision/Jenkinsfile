@@ -17,15 +17,15 @@ pipeline {
 	  }
     stage('Ansible linting') {
     	steps {
-    	  sh 'echo "*************************Ansible Linting*************************"'
-              cd ${WORKSPACE}/src/infra/ansible/
-              sh 'ansible-lint *.yml'
+      	  sh 'echo "*************************Ansible Linting*************************"'
+          sh 'cd ${WORKSPACE}/src/infra/ansible'
+          sh 'ansible-lint *.yml'
     	  }
     }
     stage('Ansible Prevision: staging') {
       steps {
-        sh 'echo "*************************Ansible Linting*************************"'
-              sh 'ansible-playbook -i ${WORKSPACE}/src/infra/ansible/hosts-staging.ini ${WORKSPACE}/src/infra/ansible/site.yml'
+        sh 'echo "*************************Ansible Provision: Staging*************************"'
+        sh 'ansible-playbook -i ${WORKSPACE}/src/infra/ansible/hosts-staging.ini ${WORKSPACE}/src/infra/ansible/site.yml'
       }
     }
   }
