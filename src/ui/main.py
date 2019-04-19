@@ -1,4 +1,6 @@
-from flask import Flask, render_template, url_for, flash, redirect, request
+from flask import Flask, render_template, url_for, flash, redirect, request\
+
+import os
 from ui import Forms
 import json
 import requests
@@ -8,9 +10,12 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'f9bf78b9a18ce6d46a0cd2b0b86df9da'
 
-#url = 'http://10.216.202.10:5000'
+if 'DOODLE_CONFIG' in os.environ:
+    filepath = os.environ['DOODLE_CONFIG']
+else:
+    filepath = '../dev_config.json'
 
-with open('../dev_config.json') as f:
+with open(filepath) as f:
     config = json.load(f)
 
 hostIp = config.get("hostIp")
@@ -23,9 +28,6 @@ def home():
     urlget = url+"/requirements"
     response = requests.get(urlget)
     col = response.json()
-    for branch in col:
-        for item in branch:
-            print("\'{}\': [\'{}\']".format(item, branch[item]))
 
     branches = []
 
