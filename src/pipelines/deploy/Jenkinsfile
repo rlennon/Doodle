@@ -1,21 +1,39 @@
 pipeline {
   agent any
-  parameters {
-	}
+	parameters {
+			  string(defaultValue: true, description: '', name: 'BUILD_JOB_BUILD_NUMBER')
+	}	
   stages {
     stage('Artifactory Pull') {
 	  	steps {
-		  	sh 'echo "*************************Artifactory Pull*************************"'
+		  	sh '''
+					echo "*************************Artifactory Pull*************************"
+					curl -u ${ARTIFACTORY_USER}:${ARTIFACTORY_PASSWORD} http://172.28.25.122:8081/artifactory/doodle-release-local/com/doodle/build/doodle_build-${BUILD_JOB_BUILD_NUMBER}/doodle_build-${BUILD_JOB_BUILD_NUMBER}.tar" -o ${WORKSPACE}/doodle_build-${BUILD_JOB_BUILD_NUMBER}.tar
+					rm ${WORKSPACE}/doodle_build-${BUILD_JOB_BUILD_NUMBER}.tar
+				'''
 		  }	
 	  }
-  	stage('Transfer to Target Server') {
+  	stage('Transfer Package to Target Server') {
   		steps {
 			  sh 'echo "*************************Transfer to Target Server*************************"'
+				sshPublisher(publishers: [sshPublisherDesc(configName: 'Doodle-API-Staging', transfers: [sshTransfer(cleanRemote: false, 
+						excludes: '', 
+						execCommand: '''
+													cd /home/doodle/Doodle/src/
+													ls -ltr
+													''', 
+						execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', 
+						remoteDirectory: '/home/doodle/Doodle/src/', remoteDirectorySDF: false, removePrefix: '${WORKSPACE}/', 
+						sourceFiles: '${WORKSPACE}/*.tar')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
  		  }	
 	  }
-				stage('UnTar Package') {
+		stage('UnTar Package') {
 	  	steps {
-		  	sh 'echo "*************************UnTar Package*************************"'
+		  	sh '''
+					echo "*************************UnTar Package*************************"
+					tar -xvf ${WORKSPACE}/doodle_build-${BUILD_JOB_BUILD_NUMBER}.tar
+					ls -ltr
+				'''
 		  }	
 	  }
   	stage('Smoke Test') {
@@ -23,11 +41,5 @@ pipeline {
 			  sh 'echo "*************************Smoke Test*************************"'
  		  }	
 	  }
-	  }
-  post {
-    failure {
-        mail to: 'email address',
-             subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-             body: "Something is wrong with ${env.JOB_URL}"
   }
 }
