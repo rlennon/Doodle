@@ -1,6 +1,8 @@
 #!/usr/bin/env groovy
 
-def SCM_checkout(${SCM_Dir}) {
+pipelines.jenkins_shared_libraries.vars
+
+def SCM_checkout(SCM_Dir) {
   checkout([$class: 'GitSCM', 
     branches: [[name: '*/master']], 
     doGenerateSubmoduleConfigurations: false, 

@@ -2,7 +2,9 @@
 
 M.Sc. DevOps Team 1
 
-daivops ek lakshy nahin hai, lekin nity sudhaar kee ek kabhee na khatm hone vaalee prakriya hai
+Inspiration Quote
+
+**"daivops ek lakshy nahin hai, lekin nity sudhaar kee ek kabhee na khatm hone vaalee prakriya hai"**
 
 # Table of Contents
 
@@ -35,7 +37,7 @@ Colin, Conor, Emmet, Fiona, Francis, Lee, Peter, Wes
 
 ## Project Deadline
 
-5th May 2019 at 23:59
+29th April 2019 at 23:59
 
 ## Project Specification
 
@@ -69,6 +71,7 @@ the client enters details it should not be able to be changed by the client.
 - Slack: https://lyit.slack.com/messages/GGGLUP8H3
 - Jira: https://studentjira.lyit.ie/secure/RapidBoard.jspa?projectKey=DOODLE&rapidView=51&view=planning.nodetail
 - GitHub: https://github.com/rlennon/Doodle
+- Buy-Out Presentation: https://prezi.com/view/munfrET5LED1M1U3fWTn/
 
 ### For more information visit our other sections
 
@@ -170,13 +173,8 @@ These are the current Risks on the project, re-aligned on a weekly basis
 
 **Estimating Story Points Within Jira**
 
-1 = Up to 1 day to complete
+The teams story point velocity is calculated by dividing the total story point completed divided by no of sprints. The Velocity chart from Jira (below) is used for this calculation
 
-2 = From 1 day to 2.5 days to complete
+![Screenshot](./content/images/velocitychart.png)
 
-5 = From 2.5 to 1 week to complete
-
-8 = From 1 week to 2 weeks to complete (needs to be broken into at least 2 stories)
-
-13 = Multiple weeks to complete (needs to be broken into at least 3 stories)
-
+The teams current story point velocity is 20.
