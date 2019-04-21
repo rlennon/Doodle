@@ -148,4 +148,3 @@ api.add_resource(Requirement, '/requirement')
 # Run and config the IP (ip 0.0.0.0 for all IPs)
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
-
