@@ -18,8 +18,7 @@ pipeline {
     stage('Ansible linting') {
     	steps {
       	  sh 'echo "*************************Ansible Linting*************************"'
-          sh 'cd ${WORKSPACE}/src/infra/ansible'
-          sh 'ansible-lint site.yml'
+          sh 'ansible-lint ${WORKSPACE}/src/infra/ansible/site.yml'
     	  }
     }
     stage('Ansible Prevision: staging') {
