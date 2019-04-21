@@ -1,0 +1,11 @@
+nose
+coverage
+mock
+flask
+markdown
+wtforms
+flask_restful
+pymongo
+flask_wtf
+requests
+pylint
