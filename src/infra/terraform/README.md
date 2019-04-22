@@ -5,7 +5,7 @@ Here is Doodle application infrastructure defined as terraform code. This will p
 - api
 - web
 
-on LYIT esxi virtual environment.
+for both staging and production environments on LYIT esxi virtual host.
 
 ## Dependencies
 
