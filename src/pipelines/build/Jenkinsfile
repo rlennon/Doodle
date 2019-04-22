@@ -19,8 +19,19 @@ pipeline {
   		steps {
 			 sh '''
 			 			echo "*************************Running Nosetests with Python Builder*************************"
+						if [ -n "${WORKSPACE:+1}" ]; then
+    						  # Path to virtualenv cmd installed by pip
+    						  # /usr/local/bin/virtualenv
+    						  PATH=$WORKSPACE/venv/bin:/usr/local/bin:$PATH
+    						  if [ ! -d "venv" ]; then
+            					    virtualenv -p python3 venv
+    						  fi
+    						  . venv/bin/activate
+						fi
+						pip install -r src/pipelines/build/requirements.txt 
 						cd ${WORKSPACE}/rlennon/doodle/src/POC/PythonAPI/src/POC
-			 			sudo nosetests3 --with-coverage --cover-package=PythonAPI
+						nosetests --with-coverage --cover-package=PythonAPI
+						pylint --disable=C0103 PythonAPI/pythonapiPoC.py || exit 0
 					'''
 		  }	
 	  }
