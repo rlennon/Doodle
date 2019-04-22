@@ -39,6 +39,10 @@ see documentation here:
 
 ### FAQ / KB
 
+#### Golden image
+
+The terraform code relies on a golden disk image to be present in /backup folder of esxi datastore. This was created manually. It is copied by terraform to create each new VM.
+
 #### Endpoints
 
 There is no DNS entrys in LYIT-DC for our services. you will need to use IPs to resolve the service. all services run on port 8080
