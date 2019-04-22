@@ -31,8 +31,8 @@ Here we outline not only our current architecture but the journey taken to get t
 
 The application will reside on 2 VMs within the LYIT-CDC datacenter.
 
-- VM1 hosts the frontend webservice. The webservice consists of python flask application wrapped in gnuicorn webserver.
-- VM2 hosts API. The API consists of python flask application wrapped in gnuicorn webserver connecting to local mongodb.
+- VM1 "web" hosts the frontend webservice. The webservice consists of python flask application wrapped in gnuicorn webserver.
+- VM2 "api" hosts API. The API consists of python flask application wrapped in gnuicorn webserver connecting to local mongodb.
 
 ## Software
 

@@ -38,3 +38,19 @@ see documentation here:
 - [Ansible](../src/infra/ansible/README.md)
 
 ### FAQ / KB
+
+#### Endpoints
+
+There is no DNS entrys in LYIT-DC for our services. you will need to use IPs to resolve the service. all services run on port 8080
+
+#### dns:
+
+For service discovery between VMs, the following static entries are setup on all VMs:
+
+```
+api.internal.tld
+web.internal.tld
+```
+#### esxi terraform problems
+
+The esxi host doesn't play nicely with terraform. There is a problem with the copy disk image step. After running terraform, it is necessary to manually copy the golden image in the datastore explorer before starting VMs.
