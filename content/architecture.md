@@ -18,6 +18,7 @@ Here we outline not only our current architecture but the journey taken to get t
 ## Technology Choices
 
 - Language: Python
+- webservices: Flask+gnuicorn
 - Datastore: Mongo
 - Version Control : GitHub
 - Issue tracking : JIRA
@@ -28,7 +29,10 @@ Here we outline not only our current architecture but the journey taken to get t
 
 <img src="./images/app_arch_v1.png" alt="version 1" width="1100"/>
 
-The application will reside on 2 VMs within the LYIT-CDC datacenter. VM1 will serve as the service endpoint and will host a python webservice. VM2 will host the python API with mongodb datastore. 
+The application will reside on 2 VMs within the LYIT-CDC datacenter.
+
+- VM1 "web" hosts the frontend webservice. The webservice consists of python flask application wrapped in gnuicorn webserver.
+- VM2 "api" hosts API. The API consists of python flask application wrapped in gnuicorn webserver connecting to local mongodb.
 
 ## Software
 
@@ -36,14 +40,15 @@ The application will reside on 2 VMs within the LYIT-CDC datacenter. VM1 will se
 |---|---|---|
 | Ubuntu | 16.04 |  |
 | Mongo | 4.0.6   |  |
-| Python |    |  |
+| Python |  3.5  |  |
 | Artifactory |    |  |
-| Terraform |    |  |
+| Terraform |  0.11.13  |  |
 | Jenkins |  2.164.1  |  |
 | Git | 2.7.4   |  |
-| Vagrant |    |  |
-| Virtualbox |    |  |
-| Ansible |    |  |
+| Vagrant |  2.2.4  |  |
+| Virtualbox | 6.0.4 |  |
+| Ansible |  2.7.10  |  |
+
 
 ## Jenkins Installation And Configuration
 
