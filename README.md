@@ -72,6 +72,7 @@ the client enters details it should not be able to be changed by the client.
 - Jira: https://studentjira.lyit.ie/secure/RapidBoard.jspa?projectKey=DOODLE&rapidView=51&view=planning.nodetail
 - GitHub: https://github.com/rlennon/Doodle
 - Buy-Out Presentation: https://prezi.com/view/munfrET5LED1M1U3fWTn/
+- Project close out presentation: https://prezi.com/view/JDaFUE32QiFpgSSGCyHE/
 
 ### For more information visit our other sections
 
