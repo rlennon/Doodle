@@ -27,7 +27,7 @@ db = client[config.get("dbName")]
 # Display the readme when accessing index
 def index():
 
-    with open(os.path.dirname(app.instance_path) + '/../README.md', 'r') as markdown_file:
+    with open(os.path.dirname(app.instance_path) + '/README.md', 'r') as markdown_file:
         content = markdown_file.read()
         return markdown.markdown(content)
 
