@@ -1,7 +1,7 @@
 {
   "dbName": "doodle",
   "dbServerEndpoint": "mongodb://127.0.0.1:27017/",
-  "hostIp": "10.216.202.10",
-  "apiPort": 5000,
+  "apiHost": "api.internal.tld",
+  "apiPort": 8080,
   "uiPort": 80
 }
