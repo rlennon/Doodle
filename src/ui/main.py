@@ -13,12 +13,12 @@ app.config['SECRET_KEY'] = 'f9bf78b9a18ce6d46a0cd2b0b86df9da'
 if 'DOODLE_CONFIG' in os.environ:
     filepath = os.environ['DOODLE_CONFIG']
 else:
-    filepath = '../dev_config.json'
+    filepath = '../config.json'
 
 with open(filepath) as f:
     config = json.load(f)
 
-hostIp = config.get("hostIp")
+hostIp = config.get("apiHost")
 port = config.get("apiPort")
 url = "http://{}:{}".format(hostIp, port)
 
