@@ -14,7 +14,7 @@ api = Api(app)
 if 'DOODLE_CONFIG' in os.environ:
     filepath = os.environ['DOODLE_CONFIG']
 else:
-    filepath = '../dev_config.json'
+    filepath = '../config.json'
 
 with open(filepath) as f:
     config = json.load(f)
@@ -98,4 +98,4 @@ api.add_resource(Requirement, '/requirement')
 
 # Run and config the IP (ip 0.0.0.0 for all IPs)
 if __name__ == '__main__':
-    app.run(debug=True, host=config.get("hostIp"))
+    app.run(debug=True)
