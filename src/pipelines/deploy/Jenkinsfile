@@ -1,7 +1,7 @@
 pipeline {
   agent any
 	parameters {
-			  string(defaultValue: true, description: '', name: 'DOODLE_BUILD_JOB_BUILD_NUMBER')
+			  string(defaultValue: '', description: '', name: 'DOODLE_BUILD_JOB_BUILD_NUMBER')
 	}	
   stages {
     stage('Artifactory Pull') {
