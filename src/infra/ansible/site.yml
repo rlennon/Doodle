@@ -9,7 +9,7 @@
       name: "{{ default_packages }}"
 
   - name: Clone the Repo
-    git: clone=yes repo="{{ repo }}" dest="{{ install_path }}" version="master"
+    git: clone=yes repo="{{ repo }}" dest="{{ install_path }}" version="{{ repo_version }}"
 
   - name: Create a virtual environment
     command: python3.5 -m venv "{{ install_path }}"/env creates="{{ install_path }}/env"
