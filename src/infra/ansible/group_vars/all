@@ -4,7 +4,7 @@ default_packages: ['ca-certificates', 'software-properties-common', 'apt-transpo
 repo: "https://github.com/rlennon/Doodle.git"
 repo_version: "master"
 install_path: "/home/{{ deploy_user }}/Doodle"
-requirements_path: "{{ install_path }}/src/infra/ansible/requirements.txt"
+requirements_path: "{{ install_path }}/src/requirements.txt"
 hosts: []
 services_port: "8080"
 api_app_path: "{{ install_path }}/src/services"
