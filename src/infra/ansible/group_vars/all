@@ -2,11 +2,12 @@
 deploy_user: "vagrant"
 default_packages: ['ca-certificates', 'software-properties-common', 'apt-transport-https', 'python3.5', 'python3-pip', 'python3.5-venv', 'git', 'gunicorn']
 repo: "https://github.com/rlennon/Doodle.git"
+repo_version: "master"
 install_path: "/home/{{ deploy_user }}/Doodle"
-requirements_path: "{{ install_path }}/src/POC/infrastructure/requirements.txt"
+requirements_path: "{{ install_path }}/src/requirements.txt"
 hosts: []
 services_port: "8080"
-api_app_path: "{{ install_path }}/src/POC/infrastructure/PythonAPI"
-api_app: "pythonapiPoC:app"
-web_app_path: "{{ install_path }}/src/POC/infrastructure/DoodleUI"
-web_app: "test:app"
+api_app_path: "{{ install_path }}/src/services"
+api_app: "api:app"
+web_app_path: "{{ install_path }}/src/ui"
+web_app: "main:app"
