@@ -44,23 +44,12 @@ pipeline {
 				  '''
 	  	}	
 	  }
-  	stage('Artifactory Load') {
-  		steps {
-			sh '''
-					echo "*************************Artifactory Load*************************"
-					echo "curl command pushes new build package into artifactory"
-					curl -u ${ARTIFACTORY_USER}:${ARTIFACTORY_PASSWORD} -X PUT "${ARTIFACTORY_SERVER}:${ARTIFACTORY_PORT}/artifactory/doodle-release-local/com/doodle/build/doodle_build-${BUILD_NUMBER}/doodle_build-${BUILD_NUMBER}.tar" -T ${WORKSPACE}/doodle_build-${BUILD_NUMBER}.tar
-		  		rm ${WORKSPACE}/doodle_build-${BUILD_NUMBER}.tar
-				'''
-		}	
-	  }
+  	
   }
 	post {
-		success {
-			build job: 'Doodle_Build_staging', parameters: [[$class: 'StringParameterValue', name: 'BUILD_JOB_BUILD_NUMBER', value: ${BUILD_NUMBER}]
-		}	
 		always {
-			cleanWs() 
+			cleanWs()
 		}
 	}
+	
 }

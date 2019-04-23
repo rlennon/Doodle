@@ -14,7 +14,7 @@ api = Api(app)
 if 'DOODLE_CONFIG' in os.environ:
     filepath = os.environ['DOODLE_CONFIG']
 else:
-    filepath = '../dev_config.json'
+    filepath = '../config.json'
 
 with open(filepath) as f:
     config = json.load(f)
@@ -27,7 +27,7 @@ db = client[config.get("dbName")]
 # Display the readme when accessing index
 def index():
 
-    with open(os.path.dirname(app.instance_path) + '/../README.md', 'r') as markdown_file:
+    with open(os.path.dirname(app.instance_path) + '/README.md', 'r') as markdown_file:
         content = markdown_file.read()
         return markdown.markdown(content)
 
@@ -98,4 +98,4 @@ api.add_resource(Requirement, '/requirement')
 
 # Run and config the IP (ip 0.0.0.0 for all IPs)
 if __name__ == '__main__':
-    app.run(debug=True, host=config.get("hostIp"))
+    app.run(debug=True)
