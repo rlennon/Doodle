@@ -2,6 +2,7 @@
 - hosts: all
   user: "{{ deploy_user }}"
   become: yes
+  tags: provision
   tasks:
 
   - name: Install packages
@@ -17,6 +18,7 @@
 - hosts: doodle_api
   user: "{{ deploy_user }}"
   become: yes
+  tags: provision
   tasks:
 
   - name: Add GPG key
@@ -36,6 +38,7 @@
 - hosts: vagrant
   user: "{{ deploy_user }}"
   become: yes
+  tags: deploy
   tasks:
 
   - name: Clone the Repo
@@ -44,6 +47,7 @@
 - hosts: prod, staging
   user: "{{ deploy_user }}"
   become: yes
+  tags: deploy
   tasks:
 
   - name: Deploy
@@ -61,6 +65,7 @@
 - hosts: all
   user: "{{ deploy_user }}"
   become: yes
+  tags: deploy
   tasks:
 
   - name: Create a virtual environment
@@ -74,6 +79,7 @@
 - hosts: doodle_web
   user: "{{ deploy_user }}"
   become: yes
+  tags: deploy
   tasks:
 
   - name: Copy systemd script
@@ -85,6 +91,7 @@
 - hosts: doodle_api
   user: "{{ deploy_user }}"
   become: yes
+  tags: deploy
   tasks:
 
   - name: Copy systemd script
