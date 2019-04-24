@@ -56,7 +56,7 @@ pipeline {
 		  sh '''
 						echo "*************************Build/Tar Package*************************"
 						cd ${WORKSPACE}/package
-						tar -cvf doodle_build-${BUILD_NUMBER}.tar *
+						tar -cvf ${WORKSPACE}/doodle_build-${BUILD_NUMBER}.tar *
 						ls -ltr
 				  '''
 	  	}

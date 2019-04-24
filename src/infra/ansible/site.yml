@@ -50,6 +50,12 @@
   tags: deploy
   tasks:
 
+  - name: create application directory
+    file:
+      path: "{{ install_path }}/src"
+      state: directory
+      user: "{{ deploy_user }}"
+
   - name: Deploy
     unarchive:
       src: "{{ artifactory_build_url }}"
