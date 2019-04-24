@@ -1,12 +1,12 @@
 from unittest import TestCase
 from unittest.mock import patch
-from api import RequirementList
+from services.api import RequirementList
 from flask import Response
 from bson.json_util import dumps
 
 
 class TestRequirementList(TestCase):
-    @patch('api.db_find')
+    @patch('services.api.db_find')
     def test_get(self, mock):
         return_value = [
             {
