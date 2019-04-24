@@ -3,6 +3,7 @@ deploy_user: "vagrant"
 default_packages: ['ca-certificates', 'software-properties-common', 'apt-transport-https', 'python3.5', 'python3-pip', 'python3.5-venv', 'git', 'gunicorn']
 repo: "https://github.com/rlennon/Doodle.git"
 repo_version: "master"
+update_repo: "yes"
 install_path: "/home/{{ deploy_user }}/Doodle"
 requirements_path: "{{ install_path }}/src/requirements.txt"
 hosts: []
