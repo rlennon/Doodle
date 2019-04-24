@@ -46,12 +46,23 @@ pipeline {
 			  sh 'echo "*************************Smoke Test*************************"'
  		  }	
 	  }
-		stage('Security Test Placeholder') {
-  		steps {
-			  sh 'echo "*************************Security Test Placeholder*************************"'
- 		  }	
-	  }
-  }
+    stage('Security Scanning') {
+	  	steps {
+		  	sh '''
+			  echo "*************************Running Security scan for open ports*************************"
+			  if [ -n "${WORKSPACE:+1}" ]; then
+    		 	# Path to virtualenv cmd installed by pip
+    			# /usr/local/bin/virtualenv
+    			PATH=$WORKSPACE/venv/bin:/usr/local/bin:$PATH
+    			if [ ! -d "venv" ]; then
+            	    virtualenv -p python3 venv
+    			fi
+    			    . venv/bin/activate
+			  fi
+			  python3 ./vars/Staging_security_port_scanning.py
+		    '''  		  
+			}
+		}	
 	post {
 		success {
 			build job: 'Deploy_Production', parameters: [string(name: 'DOODLE_BUILD_JOB_BUILD_NUMBER', value: "${BUILD_NUMBER}")], wait: false
