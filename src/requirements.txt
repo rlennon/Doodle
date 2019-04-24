@@ -6,3 +6,4 @@ pymongo
 wtforms
 flask_wtf
 requests
+bson

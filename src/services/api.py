@@ -13,11 +13,15 @@ app = Flask(__name__)
 api = Api(app)
 
 if 'DOODLE_CONFIG' in os.environ:
-    filepath = os.environ.get['DOODLE_CONFIG']
-else:
-    filepath = '../config.json'
+    file_path = os.environ.get['DOODLE_CONFIG']
 
-with open(filepath) as f:
+elif os.path.isfile('../config.json'):
+    file_path = '../config.json'
+
+else:
+    file_path = 'config.json'
+
+with open(file_path) as f:
     config = json.load(f)
 
 client = pymongo.MongoClient(config.get("dbServerEndpoint"))
