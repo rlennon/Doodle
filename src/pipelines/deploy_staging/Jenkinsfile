@@ -3,21 +3,21 @@ pipeline {
 	parameters {
 			  string(defaultValue: '', description: '', name: 'DOODLE_BUILD_JOB_BUILD_NUMBER')
 	}
-  stage('GitHub Pull') {
-    steps {
-      sh 'echo "*************************GitHub Pull*************************"'
-      script {
-        checkout([$class: 'GitSCM',
-          branches: [[name: '*/master']],
-          doGenerateSubmoduleConfigurations: false,
-          extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: "rlennon/doodle/src"]],
-          submoduleCfg: [],
-          userRemoteConfigs: [[url: 'git@github.com:rlennon/doodle']]
-        ])
+  stages {
+    stage('GitHub Pull') {
+      steps {
+        sh 'echo "*************************GitHub Pull*************************"'
+        script {
+          checkout([$class: 'GitSCM',
+            branches: [[name: '*/master']],
+            doGenerateSubmoduleConfigurations: false,
+            extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: "rlennon/doodle/src"]],
+            submoduleCfg: [],
+            userRemoteConfigs: [[url: 'git@github.com:rlennon/doodle']]
+          ])
+        }
       }
     }
-  }
-  stages {
 		stage('Deploy to Staging') {
   		steps {
 			  sh 'echo "*************************Deploy Staging*************************"'
