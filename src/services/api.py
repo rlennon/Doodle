@@ -14,7 +14,7 @@ api = Api(app)
 if 'DOODLE_CONFIG' in os.environ:
     filepath = os.environ.get['DOODLE_CONFIG']
 else:
-    filepath = '..\..\config.json'
+    filepath = '../../config.json'
 
 with open(filepath) as f:
     config = json.load(f)
