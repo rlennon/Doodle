@@ -13,6 +13,20 @@ pipeline {
 				'''
 		  }	
 	  }
+		stage('Transfer Package to Target Server') {
+  		steps {
+			  sh 'echo "*************************Transfer to Target Server*************************"'
+				sshPublisher(publishers: [sshPublisherDesc(configName: 'Doodle-API-Staging', transfers: [sshTransfer(cleanRemote: false, 
+						excludes: '', 
+						execCommand: '''
+													cd /home/doodle/Doodle/src/
+													ls -ltr
+													''', 
+						execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', 
+						remoteDirectory: '/home/doodle/Doodle/src/', remoteDirectorySDF: false, removePrefix: '${WORKSPACE}/', 
+						sourceFiles: '${WORKSPACE}/*.tar')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+ 		  }	
+		}
   	stage('Deployment Validation Test') {
   		steps {
 			  sh 'echo "*************************Smoke Test*************************"'
