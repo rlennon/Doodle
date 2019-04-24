@@ -13,6 +13,34 @@ pipeline {
 				'''
 		  }	
 	  }
+		stage('Test conntection to Staging API Server') {
+  		steps {
+			  sh 'echo "*************************Transfer to Target Server*************************"'
+				sshPublisher(publishers: [sshPublisherDesc(configName: 'Doodle-API-Staging', transfers: [sshTransfer(cleanRemote: false, 
+						excludes: '', 
+						execCommand: '''
+													cd /home/doodle/Doodle/src/
+													ls -ltr
+													''', 
+						execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', 
+						remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', 
+						sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+ 		  }	
+		}
+		stage('Test conntection to Staging UI Server') {
+  		steps {
+			  sh 'echo "*************************Transfer to Target Server*************************"'
+				sshPublisher(publishers: [sshPublisherDesc(configName: 'Doodle-UI-Staging', transfers: [sshTransfer(cleanRemote: false, 
+						excludes: '', 
+						execCommand: '''
+													cd /home/doodle/Doodle/src/
+													ls -ltr
+													''', 
+						execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', 
+						remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', 
+						sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+ 		  }	
+		}
   	stage('Deployment Validation Test') {
   		steps {
 			  sh 'echo "*************************Smoke Test*************************"'

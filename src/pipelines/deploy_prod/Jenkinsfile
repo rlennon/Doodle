@@ -13,11 +13,39 @@ pipeline {
 				'''
 		  }	
 	  }
-  	stage('Deployment Validation Test') {
+		stage('Test conntection to Prod API Server') {
   		steps {
-			  sh 'echo "*************************Smoke Test*************************"'
+			  sh 'echo "*************************Transfer to Target Server*************************"'
+				sshPublisher(publishers: [sshPublisherDesc(configName: 'Doodle-API-Prod', transfers: [sshTransfer(cleanRemote: false, 
+						excludes: '', 
+						execCommand: '''
+													cd /home/doodle/Doodle/src/
+													ls -ltr
+													''', 
+						execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', 
+						remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', 
+						sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
  		  }	
-	  }
+		}
+		stage('Test conntection to Prod UI Server') {
+  		steps {
+			  sh 'echo "*************************Transfer to Target Server*************************"'
+				sshPublisher(publishers: [sshPublisherDesc(configName: 'Doodle-UI-Prod', transfers: [sshTransfer(cleanRemote: false, 
+						excludes: '', 
+						execCommand: '''
+													cd /home/doodle/Doodle/src/
+													ls -ltr
+													''', 
+						execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', 
+						remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', 
+						sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+ 		  }	
+		}
+		stage('Deployment Validation Test') {
+  			steps {
+				  sh 'echo "*************************Smoke Test*************************"'
+ 		  	}	
+	  	}
 		stage('Security Test Placeholder') {
   		steps {
 			  sh 'echo "*************************Security Test Placeholder*************************"'
