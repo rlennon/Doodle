@@ -13,18 +13,32 @@ pipeline {
 				'''
 		  }	
 	  }
-		stage('Transfer Package to Target Server') {
+		stage('Test conntection to Prod API Server') {
   		steps {
 			  sh 'echo "*************************Transfer to Target Server*************************"'
-				sshPublisher(publishers: [sshPublisherDesc(configName: 'Doodle-API-Staging', transfers: [sshTransfer(cleanRemote: false, 
+				sshPublisher(publishers: [sshPublisherDesc(configName: 'Doodle-API-Prod', transfers: [sshTransfer(cleanRemote: false, 
 						excludes: '', 
 						execCommand: '''
 													cd /home/doodle/Doodle/src/
 													ls -ltr
 													''', 
 						execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', 
-						remoteDirectory: '/home/doodle/Doodle/src/', remoteDirectorySDF: false, removePrefix: '${WORKSPACE}/', 
-						sourceFiles: '${WORKSPACE}/*.tar')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+						remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', 
+						sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+ 		  }	
+		}
+		stage('Test conntection to Prod UI Server') {
+  		steps {
+			  sh 'echo "*************************Transfer to Target Server*************************"'
+				sshPublisher(publishers: [sshPublisherDesc(configName: 'Doodle-UI-Prod', transfers: [sshTransfer(cleanRemote: false, 
+						excludes: '', 
+						execCommand: '''
+													cd /home/doodle/Doodle/src/
+													ls -ltr
+													''', 
+						execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', 
+						remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', 
+						sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
  		  }	
 		}
 		stage('Deployment Validation Test') {
