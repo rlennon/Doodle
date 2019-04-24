@@ -1,0 +1,55 @@
+pipeline {
+  agent any
+	parameters {
+			  string(defaultValue: '', description: '', name: 'DOODLE_BUILD_JOB_BUILD_NUMBER')
+	}	
+  stages {
+    stage('Artifactory Pull') {
+	  	steps {
+		  	sh '''
+					echo "*************************Artifactory Pull*************************"
+					curl -u ${ARTIFACTORY_USER}:${ARTIFACTORY_PASSWORD} "http://172.28.25.122:8081/artifactory/doodle-release-local/com/doodle/build/doodle_build-${DOODLE_BUILD_JOB_BUILD_NUMBER}/doodle_build-${DOODLE_BUILD_JOB_BUILD_NUMBER}.tar" -o ${WORKSPACE}/doodle_build-${DOODLE_BUILD_JOB_BUILD_NUMBER}.tar
+				  ls -ltr
+				'''
+		  }	
+	  }
+		stage('Test connection to Prod API Server') {
+  		steps {
+			  sh 'echo "*************************Transfer to Target Server*************************"'
+				sshPublisher(publishers: [sshPublisherDesc(configName: 'Doodle-API-Prod', transfers: [sshTransfer(cleanRemote: false, 
+						excludes: '', 
+						execCommand: '''
+													cd /home/doodle/Doodle/src/
+													ls -ltr
+													''', 
+						execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', 
+						remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', 
+						sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+ 		  }	
+		}
+		stage('Test connection to Prod UI Server') {
+  		steps {
+			  sh 'echo "*************************Transfer to Target Server*************************"'
+				sshPublisher(publishers: [sshPublisherDesc(configName: 'Doodle-UI-Prod', transfers: [sshTransfer(cleanRemote: false, 
+						excludes: '', 
+						execCommand: '''
+													cd /home/doodle/Doodle/src/
+													ls -ltr
+													''', 
+						execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', 
+						remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', 
+						sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+ 		  }	
+		}
+		stage('Deployment Validation Test') {
+  			steps {
+				  sh 'echo "*************************Smoke Test*************************"'
+ 		  	}	
+	  	}
+		stage('Security Test Placeholder') {
+  		steps {
+			  sh 'echo "*************************Security Test Placeholder*************************"'
+ 		  }	
+	  }
+  }
+}
