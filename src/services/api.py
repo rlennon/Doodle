@@ -1,3 +1,4 @@
+"""Doodle API"""
 import markdown
 import os
 from flask import Flask, request, Response, jsonify
@@ -7,14 +8,13 @@ from bson.json_util import dumps
 from bson import json_util, ObjectId
 import json
 
-
 app = Flask(__name__)
 api = Api(app)
 
 if 'DOODLE_CONFIG' in os.environ:
-    filepath = os.environ['DOODLE_CONFIG']
+    filepath = os.environ.get['DOODLE_CONFIG']
 else:
-    filepath = '../config.json'
+    filepath = '..\..\config.json'
 
 with open(filepath) as f:
     config = json.load(f)
@@ -26,69 +26,126 @@ db = client[config.get("dbName")]
 @app.route("/")
 # Display the readme when accessing index
 def index():
-
+    """Displays API Readme"""
     with open(os.path.dirname(app.instance_path) + '/README.md', 'r') as markdown_file:
         content = markdown_file.read()
         return markdown.markdown(content)
 
 
-# Returns a collection of documents
-class RequirementList(Resource):
-    # Returns all documents in the requirement collection
-    @staticmethod
-    def get():
-        docs = []
+def db_find():
+    """Returns all Documents in the requirement collection"""
+    docs = []
+    try:
         for doc in db.requirement.find():
             docs.append(doc)
-        resp = json.loads(dumps(docs))
+
+    except pymongo.errors.ConnectionFailure as error:
+        return {str(error)}, 500
+
+    return docs, 200
+
+
+def db_find_one(doc_id):
+    """Returns single document from ID"""
+    try:
+        doc = db.requirement.find_one({"_id": ObjectId(doc_id)})
+
+    except pymongo.errors.ConnectionFailure as error:
+        return {str(error)}, 500
+
+    return doc, 200
+
+
+def db_insert_one(data):
+    """Inserts document into requirement collection"""
+    try:
+        doc = db.requirement.insert_one(data)
+        doc_id = doc.inserted_id
+    except pymongo.errors.ConnectionFailure as error:
+        return {str(error)}, 500
+
+    return doc_id, 201
+
+
+def db_delete_one(doc_id):
+    """Deletes single document in collection"""
+    try:
+        result = db.requirement.delete_one({"_id": ObjectId(doc_id)})
+
+    except pymongo.errors.ConnectionFailure as error:
+        return {str(error)}, 500
+
+    if result.raw_result["n"] == 0 and result.raw_result["ok"] == 1:
+        return "Not Found", 404
+    if result.raw_result["ok"] == 1:
+        return "OK", 204
+    return "Error", 500
+
+
+def db_replace_one(doc_id, data):
+    """Updates single document"""
+    status_code = 500
+    try:
+        doc = db.requirement.replace_one({'_id': ObjectId(doc_id)}, data).raw_result
+        if doc["n"] == 0 and doc["ok"] == 1:
+            status_code = 404
+        elif doc["ok"] == 1:
+            status_code = 204
+
+    except pymongo.errors.ConnectionFailure as error:
+        return {str(error)}, 500
+
+    return doc, status_code
+
+
+class RequirementList(Resource):
+    """Requirement End point"""
+    @staticmethod
+    def get():
+        """Returns all documents in the requirement collection"""
+        docs, status = db_find()
+        resp = Response(dumps(docs), mimetype='application/json')
+        resp.status_code = status
         return resp
 
 
-# Returns a single document or status
 class Requirement(Resource):
-    # Create Document
+    """Returns a single document, status, update and delete"""
     @staticmethod
     def post():
-        js = json_util.dumps(request.get_json())
-        data = json_util.loads(js)
-        doc = db.requirement.insert_one(data)
-        resp = jsonify(json.loads(dumps(doc.inserted_id)))
-        resp.status_code = 201
+        """Create Document"""
+        data = json_util.loads(json_util.dumps(request.get_json()))
+        doc_id, status = db_insert_one(data)
+        resp = jsonify(json.loads(dumps(doc_id)))
+        resp.status_code = status
         return resp
 
     @staticmethod
-    # Find document
     def get():
+        """Find document"""
         doc_id = request.args.get('_Id')
-        doc = db.requirement.find_one({"_id": ObjectId(doc_id)})
-        resp = json.loads(dumps(doc))
+        doc, status = db_find_one(doc_id)
+        resp = Response(dumps(doc), mimetype='application/json')
+        resp.status_code = status
         return resp
 
     @staticmethod
-    # Delete Document
     def delete():
+        """Delete Document"""
         doc_id = request.args.get('_Id')
-        query = {"_id": ObjectId(doc_id)}
-        result = db.requirement.delete_one(query)
-        resp = Response()
-        if result.raw_result["n"] == 0 and result.raw_result["ok"] == 1:
-            resp.status_code = 404
-        elif result.raw_result["ok"] == 1:
-            resp.status_code = 204
+        resp, status = db_delete_one(doc_id)
+        resp = Response(dumps(resp), mimetype='application/json')
+        resp.status_code = status
         return resp
 
     @staticmethod
-    # Update document
     def put():
-        js = json_util.dumps(request.get_json())
-        data = json_util.loads(js)
+        """Update document"""
+        data = json_util.loads(json_util.dumps(request.get_json()))
         doc_id = data["_id"]
-        result = db.requirement.replace_one({'_id': ObjectId(doc_id)}, data)
-        resp = Response()
-        if result.raw_result["n"] == 0 and result.raw_result["ok"] == 1:
-            resp.status_code = 404
-        elif result.raw_result["ok"] == 1:
-            resp.status_code = 204
+        resp, status = db_replace_one(doc_id, data)
+        resp = Response(dumps(resp), mimetype='application/json')
+        resp.status_code = status
         return resp
 
 
