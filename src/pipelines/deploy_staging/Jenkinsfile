@@ -13,7 +13,7 @@ pipeline {
 				'''
 		  }	
 	  }
-		stage('Test conntection to Staging API Server') {
+		stage('Test connection to Staging API Server') {
   		steps {
 			  sh 'echo "*************************Transfer to Target Server*************************"'
 				sshPublisher(publishers: [sshPublisherDesc(configName: 'Doodle-API-Staging', transfers: [sshTransfer(cleanRemote: false, 
@@ -27,7 +27,7 @@ pipeline {
 						sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
  		  }	
 		}
-		stage('Test conntection to Staging UI Server') {
+		stage('Test connection to Staging UI Server') {
   		steps {
 			  sh 'echo "*************************Transfer to Target Server*************************"'
 				sshPublisher(publishers: [sshPublisherDesc(configName: 'Doodle-UI-Staging', transfers: [sshTransfer(cleanRemote: false, 
