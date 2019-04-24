@@ -13,7 +13,7 @@ pipeline {
 				'''
 		  }	
 	  }
-		stage('Test conntection to Prod API Server') {
+		stage('Test connection to Prod API Server') {
   		steps {
 			  sh 'echo "*************************Transfer to Target Server*************************"'
 				sshPublisher(publishers: [sshPublisherDesc(configName: 'Doodle-API-Prod', transfers: [sshTransfer(cleanRemote: false, 
@@ -27,7 +27,7 @@ pipeline {
 						sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
  		  }	
 		}
-		stage('Test conntection to Prod UI Server') {
+		stage('Test connection to Prod UI Server') {
   		steps {
 			  sh 'echo "*************************Transfer to Target Server*************************"'
 				sshPublisher(publishers: [sshPublisherDesc(configName: 'Doodle-UI-Prod', transfers: [sshTransfer(cleanRemote: false, 
