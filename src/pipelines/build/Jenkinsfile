@@ -5,15 +5,15 @@ pipeline {
 	  	steps {
 		  	sh 'echo "*************************GitHub Pull*************************"'
 			  script {
-				  checkout([$class: 'GitSCM', 
-   		   	  branches: [[name: '*/master']], 
-    			  doGenerateSubmoduleConfigurations: false, 
-    			  extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: "rlennon/doodle/src"]], 
-    			  submoduleCfg: [], 
+				  checkout([$class: 'GitSCM',
+   		   	  branches: [[name: '*/master']],
+    			  doGenerateSubmoduleConfigurations: false,
+    			  extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: "rlennon/doodle/src"]],
+    			  submoduleCfg: [],
    			    userRemoteConfigs: [[url: 'git@github.com:rlennon/doodle']]
     		  ])
 			  }
-		  }	
+		  }
 	  }
 	stage('Package Prep') {
 	 	steps {
@@ -29,7 +29,7 @@ pipeline {
 				cd ${WORKSPACE}/package
 				ls -ltr
 			'''
-  		}	
+  		}
 	}
   	stage('Code Coverage Testing - Python Builder') {
   		steps {
@@ -44,22 +44,22 @@ pipeline {
     						  fi
     						  . venv/bin/activate
 						fi
-						pip install -r ${WORKSPACE}/rlennon/doodle/src/src/pipelines/build/requirements.txt 
+						pip install -r ${WORKSPACE}/rlennon/doodle/src/src/pipelines/build/requirements.txt
 						cd ${WORKSPACE}/package
 						nosetests --with-coverage --cover-package=services
 						pylint --disable=C0103 services/api.py || exit 0
 					'''
-		  }	
+		  }
 	  }
 	stage('Build/Tar Package') {
 	  	steps {
 		  sh '''
 						echo "*************************Build/Tar Package*************************"
-						cd ${WORKSPACE}
-						tar -cvf doodle_build-${BUILD_NUMBER}.tar ${WORKSPACE}/package/*
+						cd ${WORKSPACE}/package
+						tar -cvf doodle_build-${BUILD_NUMBER}.tar *
 						ls -ltr
 				  '''
-	  	}	
+	  	}
 	  }
   	stage('Artifactory Load') {
   		steps {
@@ -69,15 +69,15 @@ pipeline {
 					curl -u ${ARTIFACTORY_USER}:${ARTIFACTORY_PASSWORD} -X PUT "${ARTIFACTORY_SERVER}:${ARTIFACTORY_PORT}/artifactory/doodle-release-local/com/doodle/build/doodle_build-${BUILD_NUMBER}/doodle_build-${BUILD_NUMBER}.tar" -T ${WORKSPACE}/doodle_build-${BUILD_NUMBER}.tar
 		  		    rm ${WORKSPACE}/doodle_build-${BUILD_NUMBER}.tar
 				'''
-		}	
+		}
 	  }
   }
 	post {
 		success {
 			build job: 'Deploy_Staging', parameters: [string(name: 'DOODLE_BUILD_JOB_BUILD_NUMBER', value: "${BUILD_NUMBER}")], wait: false
-		}	
+		}
 		always {
-			cleanWs() 
+			cleanWs()
 		}
 	}
 }
