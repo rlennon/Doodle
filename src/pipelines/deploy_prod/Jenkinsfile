@@ -2,50 +2,33 @@ pipeline {
   agent any
 	parameters {
 			  string(defaultValue: '', description: '', name: 'DOODLE_BUILD_JOB_BUILD_NUMBER')
-	}	
+	}
   stages {
-    stage('Artifactory Pull') {
-	  	steps {
-		  	sh '''
-					echo "*************************Artifactory Pull*************************"
-					curl -u ${ARTIFACTORY_USER}:${ARTIFACTORY_PASSWORD} "${ARTIFACTORY_SERVER}:${ARTIFACTORY_PORT}/artifactory/doodle-release-local/com/doodle/build/doodle_build-${DOODLE_BUILD_JOB_BUILD_NUMBER}/doodle_build-${DOODLE_BUILD_JOB_BUILD_NUMBER}.tar" -o ${WORKSPACE}/doodle_build-${DOODLE_BUILD_JOB_BUILD_NUMBER}.tar
-				  ls -ltr
-				'''
-		  }	
-	  }
-		stage('Test connection to Prod API Server') {
-  		steps {
-			  sh 'echo "*************************Transfer to Target Server*************************"'
-				sshPublisher(publishers: [sshPublisherDesc(configName: 'Doodle-API-Prod', transfers: [sshTransfer(cleanRemote: false, 
-						excludes: '', 
-						execCommand: '''
-													cd /home/doodle/Doodle/src/
-													ls -ltr
-													''', 
-						execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', 
-						remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', 
-						sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
- 		  }	
-		}
-		stage('Test connection to Prod UI Server') {
-  		steps {
-			  sh 'echo "*************************Transfer to Target Server*************************"'
-				sshPublisher(publishers: [sshPublisherDesc(configName: 'Doodle-UI-Prod', transfers: [sshTransfer(cleanRemote: false, 
-						excludes: '', 
-						execCommand: '''
-													cd /home/doodle/Doodle/src/
-													ls -ltr
-													''', 
-						execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', 
-						remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', 
-						sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
- 		  }	
-		}
-		stage('Deployment Validation Test') {
-  			steps {
-				  sh 'echo "*************************Smoke Test*************************"'
- 		  	}	
-	  	}
+    stage('GitHub Pull') {
+      steps {
+        sh 'echo "*************************GitHub Pull*************************"'
+        script {
+          checkout([$class: 'GitSCM',
+            branches: [[name: '*/master']],
+            doGenerateSubmoduleConfigurations: false,
+            extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: "rlennon/doodle/src"]],
+            submoduleCfg: [],
+            userRemoteConfigs: [[url: 'git@github.com:rlennon/doodle']]
+          ])
+        }
+      }
+    }
+    stage('Deploy to Staging') {
+      steps {
+        sh 'echo "*************************Deploy Staging*************************"'
+        sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook --tags=deploy --extra-vars "artifactory_build_url=${ARTIFACTORY_SERVER}:${ARTIFACTORY_PORT}/artifactory/doodle-release-local/com/doodle/build/doodle_build-${DOODLE_BUILD_JOB_BUILD_NUMBER}/doodle_build-${DOODLE_BUILD_JOB_BUILD_NUMBER}.tar" -u doodle -i ~/hosts-prod.ini ${WORKSPACE}/src/infra/ansible/site.yml'
+      }
+    }
+    stage('Deployment Validation Test') {
+      steps {
+        sh 'echo "*************************Smoke Test*************************"'
+      }
+    }
     stage('Security Scanning') {
 	  	steps {
 		  	sh '''
@@ -60,13 +43,13 @@ pipeline {
     			    . venv/bin/activate
 			  fi
 			  python3 ./vars/Production_security_port_scanning.py
-		    '''  		  
+		    '''
 			}
-		}	
+		}
   }
 	post {
 		always {
-			cleanWs() 
+			cleanWs()
 		}
 	}
 }
