@@ -59,7 +59,7 @@
   - name: Deploy
     unarchive:
       src: "{{ artifactory_build_url }}"
-      dest: "{{ install_path }}"
+      dest: "{{ install_path }}/src"
       remote_src: yes
     notify:
     - restart application
