@@ -42,7 +42,7 @@
   tasks:
 
   - name: Clone the Repo
-    git: clone=yes repo="{{ repo }}" dest="{{ install_path }}" version="{{ repo_version }}" update="{{update_repo}}"
+    git: clone=yes repo="{{ repo }}" dest="{{ install_path }}" version="{{ repo_version }}" update="{{ update_repo }}"
 
 - hosts: prod, staging
   user: "{{ deploy_user }}"
