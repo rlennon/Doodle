@@ -54,7 +54,7 @@
     file:
       path: "{{ install_path }}/src"
       state: directory
-      user: "{{ deploy_user }}"
+      owner: "{{ deploy_user }}"
 
   - name: Deploy
     unarchive:
