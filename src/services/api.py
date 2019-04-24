@@ -1,12 +1,13 @@
 """Doodle API"""
-import markdown
 import os
+import json
+import markdown
+import pymongo
 from flask import Flask, request, Response, jsonify
 from flask_restful import Resource, Api
-import pymongo
 from bson.json_util import dumps
 from bson import json_util, ObjectId
-import json
+
 
 app = Flask(__name__)
 api = Api(app)
