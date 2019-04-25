@@ -27,6 +27,7 @@ pipeline {
 				mv requirements.txt ${WORKSPACE}/package
 				mv config.json ${WORKSPACE}/package
 				cd ${WORKSPACE}/package
+				touch doodle_build-${BUILD_NUMBER}.txt
 				ls -ltr
 			'''
   		}
