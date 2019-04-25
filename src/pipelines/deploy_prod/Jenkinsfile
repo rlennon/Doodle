@@ -18,7 +18,7 @@ pipeline {
         }
       }
     }
-    stage('Deploy to Staging') {
+    stage('Deploy to production') {
       steps {
         sh 'echo "*************************Deploy Staging*************************"'
         sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook --tags=deploy --extra-vars "artifactory_build_url=${ARTIFACTORY_SERVER}:${ARTIFACTORY_PORT}/artifactory/doodle-release-local/com/doodle/build/doodle_build-${DOODLE_BUILD_JOB_BUILD_NUMBER}/doodle_build-${DOODLE_BUILD_JOB_BUILD_NUMBER}.tar" -u doodle -i ~/hosts-prod.ini ${WORKSPACE}/src/infra/ansible/site.yml'
