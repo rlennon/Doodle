@@ -44,6 +44,24 @@
   - name: Clone the Repo
     git: clone=yes repo="{{ repo }}" dest="{{ install_path }}" version="{{ repo_version }}" update="{{ update_repo }}"
 
+- hosts: doodle_web
+  user: "{{ deploy_user }}"
+  become: yes
+  tags: deploy
+  tasks:
+
+  - name: Copy systemd script
+    template: src=systemd_config_web dest=/lib/systemd/system/doodle.service
+
+- hosts: doodle_api
+  user: "{{ deploy_user }}"
+  become: yes
+  tags: deploy
+  tasks:
+
+  - name: Copy systemd script
+    template: src=systemd_config_api dest=/lib/systemd/system/doodle.service
+
 - hosts: prod, staging
   user: "{{ deploy_user }}"
   become: yes
@@ -64,10 +82,6 @@
     notify:
     - restart application
 
-  handlers:
-    - name: restart application
-      service: name=doodle state=restarted
-
 - hosts: all
   user: "{{ deploy_user }}"
   become: yes
@@ -82,26 +96,13 @@
       requirements: "{{ requirements_path }}"
       virtualenv: "{{ install_path }}/env"
 
-- hosts: doodle_web
-  user: "{{ deploy_user }}"
-  become: yes
-  tags: deploy
-  tasks:
-
-  - name: Copy systemd script
-    template: src=systemd_config_web dest=/lib/systemd/system/doodle.service
-
   - name: Start API
     service: name=doodle state=started enabled=yes
 
-- hosts: doodle_api
+- hosts: prod, staging
   user: "{{ deploy_user }}"
   become: yes
   tags: deploy
-  tasks:
-
-  - name: Copy systemd script
-    template: src=systemd_config_api dest=/lib/systemd/system/doodle.service
-
-  - name: Start API
-    service: name=doodle state=started enabled=yes
+  handlers:
+    - name: restart application
+      service: name=doodle state=restarted
