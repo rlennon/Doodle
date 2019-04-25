@@ -24,8 +24,13 @@ pipeline {
     stage('Ansible Prevision: staging') {
       steps {
         sh 'echo "*************************Ansible Provision: Staging*************************"'
-        sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u doodle -i ~/hosts-staging.ini ${WORKSPACE}/src/infra/ansible/site.yml'
+        sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook --tags=provision -u doodle -i ~/hosts-staging.ini ${WORKSPACE}/src/infra/ansible/site.yml'
       }
+    }
+  }
+  post {
+    always {
+      cleanWs()
     }
   }
 }

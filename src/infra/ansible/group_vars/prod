@@ -1,3 +1,4 @@
 ---
 hosts: ['10.0.1.201      web.internal.tld', '10.0.1.202      api.internal.tld']
 default_packages: ['ca-certificates', 'software-properties-common', 'apt-transport-https', 'python3.5', 'python3-pip', 'python3.5-venv', 'git', 'gunicorn', 'acct']
+deploy_user: "doodle"
