@@ -79,8 +79,6 @@
       src: "{{ artifactory_build_url }}"
       dest: "{{ install_path }}/src"
       remote_src: yes
-    notify:
-    - restart application
 
 - hosts: all
   user: "{{ deploy_user }}"
@@ -98,11 +96,3 @@
 
   - name: Start API
     service: name=doodle state=started enabled=yes
-
-- hosts: prod, staging
-  user: "{{ deploy_user }}"
-  become: yes
-  tags: deploy
-  handlers:
-    - name: restart application
-      service: name=doodle state=restarted
