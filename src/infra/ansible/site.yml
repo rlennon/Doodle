@@ -2,22 +2,12 @@
 - hosts: all
   user: "{{ deploy_user }}"
   become: yes
+  tags: provision
   tasks:
 
   - name: Install packages
     apt:
       name: "{{ default_packages }}"
-
-  - name: Clone the Repo
-    git: clone=yes repo="{{ repo }}" dest="{{ install_path }}" version="{{ repo_version }}"
-
-  - name: Create a virtual environment
-    command: python3.5 -m venv "{{ install_path }}"/env creates="{{ install_path }}/env"
-
-  - name: install requirements
-    pip:
-      requirements: "{{ requirements_path }}"
-      virtualenv: "{{ install_path }}/env"
 
   - name: insert hosts entry
     lineinfile:
@@ -25,20 +15,10 @@
       line: "{{ item }}"
     with_items: "{{ hosts }}"
 
-- hosts: doodle_web
-  user: "{{ deploy_user }}"
-  become: yes
-  tasks:
-
-  - name: Copy systemd script
-    template: src=systemd_config_web dest=/lib/systemd/system/doodleweb.service
-
-  - name: Start API
-    service: name=doodleweb state=started enabled=yes
-
 - hosts: doodle_api
   user: "{{ deploy_user }}"
   become: yes
+  tags: provision
   tasks:
 
   - name: Add GPG key
@@ -55,8 +35,73 @@
     apt:
       name: mongodb
 
+- hosts: vagrant
+  user: "{{ deploy_user }}"
+  become: yes
+  tags: deploy
+  tasks:
+
+  - name: Clone the Repo
+    git: clone=yes repo="{{ repo }}" dest="{{ install_path }}" version="{{ repo_version }}" update="{{ update_repo }}"
+
+- hosts: prod, staging
+  user: "{{ deploy_user }}"
+  become: yes
+  tags: deploy
+  tasks:
+
+  - name: create application directory
+    file:
+      path: "{{ install_path }}/src"
+      state: directory
+      owner: "{{ deploy_user }}"
+
+  - name: Deploy
+    unarchive:
+      src: "{{ artifactory_build_url }}"
+      dest: "{{ install_path }}/src"
+      remote_src: yes
+    notify:
+    - restart application
+
+  handlers:
+    - name: restart application
+      service: name=doodle state=restarted
+
+- hosts: all
+  user: "{{ deploy_user }}"
+  become: yes
+  tags: deploy
+  tasks:
+
+  - name: Create a virtual environment
+    command: python3.5 -m venv "{{ install_path }}"/env creates="{{ install_path }}/env"
+
+  - name: install requirements
+    pip:
+      requirements: "{{ requirements_path }}"
+      virtualenv: "{{ install_path }}/env"
+
+- hosts: doodle_web
+  user: "{{ deploy_user }}"
+  become: yes
+  tags: deploy
+  tasks:
+
   - name: Copy systemd script
-    template: src=systemd_config_api dest=/lib/systemd/system/doodleapi.service
+    template: src=systemd_config_web dest=/lib/systemd/system/doodle.service
 
   - name: Start API
-    service: name=doodleapi state=started enabled=yes
+    service: name=doodle state=started enabled=yes
+
+- hosts: doodle_api
+  user: "{{ deploy_user }}"
+  become: yes
+  tags: deploy
+  tasks:
+
+  - name: Copy systemd script
+    template: src=systemd_config_api dest=/lib/systemd/system/doodle.service
+
+  - name: Start API
+    service: name=doodle state=started enabled=yes
