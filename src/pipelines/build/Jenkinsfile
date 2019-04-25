@@ -52,6 +52,14 @@ pipeline {
 					'''
 		  }
 	  }
+	stage('Static Code Analysis') {
+	  	steps {
+		  sh '''
+				echo "*************************Static Code Analysis*************************"
+				sh /usr/local/bin/sonar-scanner -Dsonar.host.url=${SONARQUBE_SERVER}:${SONARQUBE_PORT} -Dsonar.login=b310a502e3031486c0a9626c9e03a4b0be4715a7 -Dsonar.projectName=Doodle -Dsonar.projectKey=DoodleTest -Dsonar.sources=${WORKSPACE}/src
+		  '''
+	  	}	
+	  }
 	stage('Build/Tar Package') {
 	  	steps {
 		  sh '''
