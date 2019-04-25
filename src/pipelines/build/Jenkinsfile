@@ -34,41 +34,49 @@ pipeline {
   	stage('Code Coverage Testing - Python Builder') {
   		steps {
 			 sh '''
-			 			echo "*************************Running Nosetests with Python Builder*************************"
-						if [ -n "${WORKSPACE:+1}" ]; then
-    						  # Path to virtualenv cmd installed by pip
-    						  # /usr/local/bin/virtualenv
-    						  PATH=$WORKSPACE/venv/bin:/usr/local/bin:$PATH
-    						  if [ ! -d "venv" ]; then
-            					    virtualenv -p python3 venv
-    						  fi
-    						  . venv/bin/activate
-						fi
-						pip install -r ${WORKSPACE}/rlennon/doodle/src/src/pipelines/build/requirements.txt 
-						cd ${WORKSPACE}/package
-						nosetests --with-coverage --cover-package=services
-						pylint --disable=C0103 services/api.py || exit 0
-					'''
+			 	echo "*************************Running Nosetests with Python Builder*************************"
+				if [ -n "${WORKSPACE:+1}" ]; then
+    				  # Path to virtualenv cmd installed by pip
+    				  # /usr/local/bin/virtualenv
+    				  PATH=$WORKSPACE/venv/bin:/usr/local/bin:$PATH
+    				  if [ ! -d "venv" ]; then
+            			    virtualenv -p python3 venv
+    				  fi
+    				  . venv/bin/activate
+				fi
+				pip install -r ${WORKSPACE}/rlennon/doodle/src/src/pipelines/build/requirements.txt 
+				cd ${WORKSPACE}/package
+				nosetests --with-coverage --cover-package=services
+				pylint --disable=C0103 services/api.py || exit 0
+			'''
 		  }	
+	  }
+	stage('Static Code Analysis') {
+	  	steps {
+		  sh '''
+				echo "*************************Static Code Analysis*************************"
+				sh /usr/local/bin/sonar-scanner -Dsonar.host.url=${SONARQUBE_SERVER}:${SONARQUBE_PORT} -Dsonar.login=b310a502e3031486c0a9626c9e03a4b0be4715a7 -Dsonar.projectName=Doodle -Dsonar.projectKey=DoodleTest -Dsonar.sources=${WORKSPACE}/src
+		  '''
+	  	}	
 	  }
 	stage('Build/Tar Package') {
 	  	steps {
 		  sh '''
-						echo "*************************Build/Tar Package*************************"
-						cd ${WORKSPACE}
-						tar -cvf doodle_build-${BUILD_NUMBER}.tar ${WORKSPACE}/package/*
-						ls -ltr
-				  '''
+				echo "*************************Build/Tar Package*************************"
+				cd ${WORKSPACE}
+				tar -cvf doodle_build-${BUILD_NUMBER}.tar ${WORKSPACE}/package/*
+				ls -ltr
+		  '''
 	  	}	
 	  }
   	stage('Artifactory Load') {
   		steps {
 			sh '''
-					echo "*************************Artifactory Load*************************"
-					echo "curl command pushes new build package into artifactory"
-					curl -u ${ARTIFACTORY_USER}:${ARTIFACTORY_PASSWORD} -X PUT "${ARTIFACTORY_SERVER}:${ARTIFACTORY_PORT}/artifactory/doodle-release-local/com/doodle/build/doodle_build-${BUILD_NUMBER}/doodle_build-${BUILD_NUMBER}.tar" -T ${WORKSPACE}/doodle_build-${BUILD_NUMBER}.tar
-		  		    rm ${WORKSPACE}/doodle_build-${BUILD_NUMBER}.tar
-				'''
+				echo "*************************Artifactory Load*************************"
+				echo "curl command pushes new build package into artifactory"
+				curl -u ${ARTIFACTORY_USER}:${ARTIFACTORY_PASSWORD} -X PUT "${ARTIFACTORY_SERVER}:${ARTIFACTORY_PORT}/artifactory/doodle-release-local/com/doodle/build/doodle_build-${BUILD_NUMBER}/doodle_build-${BUILD_NUMBER}.tar" -T ${WORKSPACE}/doodle_build-${BUILD_NUMBER}.tar
+			    rm ${WORKSPACE}/doodle_build-${BUILD_NUMBER}.tar
+		'''
 		}	
 	  }
   }
