@@ -1,4 +1,4 @@
-# Doodle POC Python Service
+# Doodle API
 
 ## Usage
 
