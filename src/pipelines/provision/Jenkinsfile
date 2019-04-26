@@ -21,7 +21,7 @@ pipeline {
           sh 'ansible-lint ${WORKSPACE}/src/infra/ansible/site.yml'
     	  }
     }
-    stage('Ansible Prevision: staging') {
+    stage('Ansible Provision: staging') {
       steps {
         sh 'echo "*************************Ansible Provision: Staging*************************"'
         sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook --tags=provision -u doodle -i ~/hosts-staging.ini ${WORKSPACE}/src/infra/ansible/site.yml'
