@@ -24,26 +24,30 @@ pipeline {
         sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook --tags=deploy --extra-vars "artifactory_build_url=${ARTIFACTORY_SERVER}:${ARTIFACTORY_PORT}/artifactory/doodle-release-local/com/doodle/build/doodle_build-${DOODLE_BUILD_JOB_BUILD_NUMBER}/doodle_build-${DOODLE_BUILD_JOB_BUILD_NUMBER}.tar" -u doodle -i ~/hosts-staging.ini ${WORKSPACE}/src/infra/ansible/site.yml'
       }
 		}
-  	stage('Deployment Validation Test') {
-  		steps {
-			  sh 'echo "*************************Smoke Test*************************"'
- 		  }
-	  }
-    stage('Security Scanning') {
-      steps {
-        sh '''
-        echo "*************************Running Security scan for open ports*************************"
-        if [ -n "${WORKSPACE:+1}" ]; then
-          # Path to virtualenv cmd installed by pip
-          # /usr/local/bin/virtualenv
-          PATH=$WORKSPACE/venv/bin:/usr/local/bin:$PATH
-          if [ ! -d "venv" ]; then
-                  virtualenv -p python3 venv
-          fi
-              . venv/bin/activate
-        fi
-        python3 ./vars/Staging_security_port_scanning.py
-        '''
+    stage('Testing') {
+      parallel {
+        stage('Deployment Validation Test') {
+          steps {
+            sh 'echo "*************************Smoke Test*************************"'
+          }
+        }
+        stage('Security Scanning') {
+	  	    steps {
+		  	    sh '''
+			        echo "*************************Running Security scan for open ports*************************"
+			        if [ -n "${WORKSPACE:+1}" ]; then
+    		 	      # Path to virtualenv cmd installed by pip
+    			      # /usr/local/bin/virtualenv
+    			      PATH=$WORKSPACE/venv/bin:/usr/local/bin:$PATH
+    			      if [ ! -d "venv" ]; then
+            	    virtualenv -p python3 venv
+    			      fi
+    			      . venv/bin/activate
+			        fi
+              python3 ./vars/Staging_security_port_scanning.py
+            '''
+ 			    }
+		    }
       }
     }
   }
