@@ -39,8 +39,8 @@ This is a log of how each sprint went for us
 
 ### Overview
 
-<img src="./images/Doodle_Sprint_1_Burndown.JPG" alt="version 1" width="1100"/>
-<img src="./images/Doodle_Sprint_1_Velocity.JPG" alt="version 1" width="1100"/>
+<img src="./images/Doodle_Sprint_1_Burndown.JPG" alt="version 1" width="900"/>
+<img src="./images/Doodle_Sprint_1_Velocity.JPG" alt="version 1" width="300"/>
 
 ### Demo
 
@@ -72,8 +72,8 @@ Long term plan i.e. are all the tasks in the backlog?
 
 ### Overview
 
-<img src="./images/Doodle_Sprint_2_Burndown.JPG" alt="version 1" width="1100"/>
-<img src="./images/Doodle_Sprint_2_Velocity.JPG" alt="version 1" width="1100"/>
+<img src="./images/Doodle_Sprint_2_Burndown.JPG" alt="version 1" width="900"/>
+<img src="./images/Doodle_Sprint_2_Velocity.JPG" alt="version 1" width="300"/>
 
 ### Demo
 
@@ -105,8 +105,8 @@ Need a walkthrough of the full system & how it will all hang together for the te
 
 ### Overview
 
-<img src="./images/Doodle_Sprint_3_Burndown.JPG" alt="version 1" width="1100"/>
-<img src="./images/Doodle_Sprint_3_Velocity.JPG" alt="version 1" width="1100"/>
+<img src="./images/Doodle_Sprint_3_Burndown.JPG" alt="version 1" width="900"/>
+<img src="./images/Doodle_Sprint_3_Velocity.JPG" alt="version 1" width="300"/>
 
 ### Demo
 
@@ -138,8 +138,8 @@ No means to record meetings
 
 ### Overview
 
-<img src="./images/Doodle_Sprint_4_Burndown.JPG" alt="version 1" width="1100"/>
-<img src="./images/Doodle_Sprint_4_Velocity.JPG" alt="version 1" width="1100"/>
+<img src="./images/Doodle_Sprint_4_Burndown.JPG" alt="version 1" width="900"/>
+<img src="./images/Doodle_Sprint_4_Velocity.JPG" alt="version 1" width="300"/>
 
 ### Demo
 
