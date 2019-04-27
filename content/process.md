@@ -6,7 +6,7 @@ This page will outline the various processes that we have refined as the project
 
 ### Scrum
 
-//TODO: Some info on our version of SCRUM
+For the most part we follow traditional SCRUM, due to the timelines applied to us we are unable to have daily stand-ups so we have two per sprint, our sprints are also only 1 week in duration. 
 
 #### Team Breakdown
 
@@ -19,6 +19,7 @@ Being a forward thinking company, we like to keep our people both happy and chal
 | **Tech Lead**    | Emmet   | Fiona | Lee    | Peter   | Wes   | Francis | Colin | Conor |
 
 #### Defined Roles
+
 A Scrum Master within the Doodle group has the following roles & responsibilities:
 
 - Setting up any meetings that are required.
@@ -32,7 +33,6 @@ A Scrum Master within the Doodle group has the following roles & responsibilitie
 A Proxy PO within the Doodle group will handle any PO related tasks in the event of the PO being unable to attend a meeting. The proxy PO will then inform the PO of the tasks that were performed in their absence.
 
 A Tech Lead within the Doodle group is responsible for making any technology related decisions during the sprint then informing the whole team of the decisions & the reasons behind those decisions.
-
 
 #### Sprints
 
@@ -57,6 +57,18 @@ Sprints are 1 week in length, starting on Fridays and finishing on Thursdays.
 - Standups: Monday / Friday after class
 - Demos: Recorded after each sprint and shared
 - Retrospectives: Every second Thursday before sprint planning
+
+#### Stand-ups
+
+Stand ups are brief update meetings with a minimum of two held each sprint to ensure everything is on track, three questions are covered.
+
+1. What have you done?
+2. What are you going to do?
+3. Any impediments?
+
+#### Retrospectives
+
+Retrospectives are held every second sprint to gain feedback and insights into how well things are going.
 
 ## Technical
 

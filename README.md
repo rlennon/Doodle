@@ -12,7 +12,7 @@ M.Sc. DevOps Team 1
 
 - [Doodle](#doodle)
 - [Table of Contents](#table-of-contents)
-  - [Introduction!](#introduction)
+  - [Preamble](#preamble)
     - [Product Owner](#product-owner)
     - [Rockstars](#rockstars)
   - [Project Deadline](#project-deadline)
@@ -24,7 +24,7 @@ M.Sc. DevOps Team 1
   - [Tenants of Design](#tenants-of-design)
   - [Social Contract](#social-contract)
 
-## Introduction!
+## Preamble
 
 This is the online repository for the engineering and tech giant **Doodle**. Our current product **Brancher** will be delivered using an Agile methodology that embraces the [DevOps culture](https://martinfowler.com/bliki/DevOpsCulture.html). 
 Please note that our culture embraces change and these documents are treated as living, breathing artefacts that will be continuously updated.
@@ -86,6 +86,10 @@ the client enters details it should not be able to be changed by the client.
 | [Architecture](./content/architecture.md) | Outlines the architecture |
 | [Environments](./content/environment.md) | Overview of the environment set-up |
 | [Requirements](./content/requirements.md) | Overview of the requirements for the project |
+| [SLAs](./content/SLA.md) | Service level agreements |
+| [Risk Management](./content/riskManagement.md) | How we manage risk |
+| [Security](./content/security.md) | Overview of security |
+| [Project Log](./content/projectlog.md) | Team log for the project |
 
 ## Risk Register
 
