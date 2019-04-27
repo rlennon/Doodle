@@ -93,7 +93,7 @@ These are the current Risks on the project, re-aligned on a weekly basis
 
 - Infrastructure proving to be a real problem, may block being able to release software
 - Team is finding itself to be running short on time due to other work and study commitments
-- No working software in production yet
+- No PO feedback on software
 - Unknown technology choices has led to a lot of upskilling required
 - Changing / ambiguous requirements
 - Talk of the company being bought out has raised concerns
