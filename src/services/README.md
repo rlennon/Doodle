@@ -119,6 +119,3 @@ _Id
 **Response**
 - `404 NOT FOUND` document not found 
 - `204 NO CONTENT` on updated
-
-
-
