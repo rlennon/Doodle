@@ -2,9 +2,11 @@
 
 M.Sc. DevOps Team 1
 
-Inspiration Quote
+**Queue Inspirational DevOps Quote**
 
-**"daivops ek lakshy nahin hai, lekin nity sudhaar kee ek kabhee na khatm hone vaalee prakriya hai"**
+```
+"daivops ek lakshy nahin hai, lekin nity sudhaar kee ek kabhee na khatm hone vaalee prakriya hai"
+```
 
 # Table of Contents
 
