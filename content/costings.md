@@ -12,5 +12,7 @@ Work is carried out on a weekly basis and costed in line with that model.
 |2|Engineer|8|800|6,400|
 |3|Engineer|8|800|6,400|
 |4|Engineer|8|800|6,400|
+|5|Engineer|8|800|6,400|
+|6|Engineer|8|800|6,400|
 |---|---|---|---|---|
-|Total||||25,600|
+|Total||||38,400|
