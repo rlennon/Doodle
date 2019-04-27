@@ -86,6 +86,7 @@ the client enters details it should not be able to be changed by the client.
 | [Architecture](./content/architecture.md) | Outlines the architecture |
 | [Environments](./content/environment.md) | Overview of the environment set-up |
 | [Requirements](./content/requirements.md) | Overview of the requirements for the project |
+| [Project Log](./content/projectlog.md) | Team log for the project |
 
 ## Risk Register
 
