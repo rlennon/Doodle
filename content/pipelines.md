@@ -1,4 +1,4 @@
-## What is Jenkins Pipeline?
+## What is a Jenkins Pipeline?
 Source : - https://jenkins.io/doc/book/pipeline/
 
 Jenkins Pipeline (or simply "Pipeline" with a capital "P") is a suite of plugins which supports implementing and integrating continuous delivery pipelines into Jenkins.
