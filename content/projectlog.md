@@ -26,22 +26,6 @@
     - [Overview](#overview-5)
     - [Demo](#demo-4)
     - [Retrospective](#retrospective-4)
-  - [Sprint 6](#sprint-6)
-    - [Overview](#overview-6)
-    - [Demo](#demo-5)
-    - [Retrospective](#retrospective-5)
-  - [Sprint 7](#sprint-7)
-    - [Overview](#overview-7)
-    - [Demo](#demo-6)
-    - [Retrospective](#retrospective-6)
-  - [Sprint 8](#sprint-8)
-    - [Overview](#overview-8)
-    - [Demo](#demo-7)
-    - [Retrospective](#retrospective-7)
-  - [Sprint 9](#sprint-9)
-    - [Overview](#overview-9)
-    - [Demo](#demo-8)
-    - [Retrospective](#retrospective-8)
 
 ## Introduction
 
@@ -212,35 +196,3 @@ Too many things on at the one time to give this project time
 Requirements for the project are poor
 
 Crowsoft have our slack channel flooded
-
-## Sprint 6
-
-### Overview
-
-### Demo
-
-### Retrospective
-
-## Sprint 7
-
-### Overview
-
-### Demo
-
-### Retrospective
-
-## Sprint 8
-
-### Overview
-
-### Demo
-
-### Retrospective
-
-## Sprint 9
-
-### Overview
-
-### Demo
-
-### Retrospective
