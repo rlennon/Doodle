@@ -13,7 +13,7 @@ app = Flask(__name__)
 api = Api(app)
 
 if 'DOODLE_CONFIG' in os.environ:
-    file_path = os.environ.get['DOODLE_CONFIG']
+    file_path = os.environ['DOODLE_CONFIG']
 
 elif os.path.isfile('../config.json'):
     file_path = '../config.json'
