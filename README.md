@@ -2,9 +2,11 @@
 
 M.Sc. DevOps Team 1
 
-Inspiration Quote
+**Queue Inspirational DevOps Quote**
 
-**"daivops ek lakshy nahin hai, lekin nity sudhaar kee ek kabhee na khatm hone vaalee prakriya hai"**
+```
+"daivops ek lakshy nahin hai, lekin nity sudhaar kee ek kabhee na khatm hone vaalee prakriya hai"
+```
 
 # Table of Contents
 
@@ -72,6 +74,7 @@ the client enters details it should not be able to be changed by the client.
 - Jira: https://studentjira.lyit.ie/secure/RapidBoard.jspa?projectKey=DOODLE&rapidView=51&view=planning.nodetail
 - GitHub: https://github.com/rlennon/Doodle
 - Buy-Out Presentation: https://prezi.com/view/munfrET5LED1M1U3fWTn/
+- Project close out presentation: https://prezi.com/view/JDaFUE32QiFpgSSGCyHE/
 
 ### For more information visit our other sections
 
@@ -90,7 +93,7 @@ These are the current Risks on the project, re-aligned on a weekly basis
 
 - Infrastructure proving to be a real problem, may block being able to release software
 - Team is finding itself to be running short on time due to other work and study commitments
-- No working software in production yet
+- No PO feedback on software
 - Unknown technology choices has led to a lot of upskilling required
 - Changing / ambiguous requirements
 - Talk of the company being bought out has raised concerns
@@ -166,15 +169,15 @@ These are the current Risks on the project, re-aligned on a weekly basis
 
 **Other**
 - Sprints will start Friday morning at 9am EST and run for 1 week
-- The Scrum Master role rotates each week, the schedule will be kept within the Process page on GitHub (https://github.com/rlennon/Doodle/blob/master/content/process.md)
+- The Scrum Master role rotates each week, the schedule is available on the on the [process section](https://github.com/rlennon/Doodle/blob/master/content/process.md)
 - Jira will be used for task management and planning.
 - Each member of the team will work 6 hours per week, unless they are on vacation.
 
 
 **Estimating Story Points Within Jira**
 
-The teams story point velocity is calculated by dividing the total story point completed divided by no of sprints. The Velocity chart from Jira (below) is used for this calculation
+The teams team's velocity is calculated by dividing the the number of points burned each sprint divided by no of sprints. The Velocity chart from Jira (below) is used for this calculation.
+
+The teams current story point velocity is ~20.
 
 ![Screenshot](./content/images/velocitychart.png)
-
-The teams current story point velocity is 20.
