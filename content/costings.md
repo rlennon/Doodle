@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is an outline of the costings for this project.
+This is an outline of the costings for this project. These costings can be used as an indicator only as the project is run on a voluntary / part-time basis.
 
 Work is carried out on a weekly basis and costed in line with that model.
 
