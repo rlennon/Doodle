@@ -12,7 +12,7 @@ M.Sc. DevOps Team 1
 
 - [Doodle](#doodle)
 - [Table of Contents](#table-of-contents)
-  - [Introduction!](#introduction)
+  - [Preamble](#preamble)
     - [Product Owner](#product-owner)
     - [Rockstars](#rockstars)
   - [Project Deadline](#project-deadline)
@@ -24,7 +24,7 @@ M.Sc. DevOps Team 1
   - [Tenants of Design](#tenants-of-design)
   - [Social Contract](#social-contract)
 
-## Introduction!
+## Preamble
 
 This is the online repository for the engineering and tech giant **Doodle**. Our current product **Brancher** will be delivered using an Agile methodology that embraces the [DevOps culture](https://martinfowler.com/bliki/DevOpsCulture.html). 
 Please note that our culture embraces change and these documents are treated as living, breathing artefacts that will be continuously updated.
