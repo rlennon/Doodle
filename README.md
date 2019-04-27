@@ -169,15 +169,15 @@ These are the current Risks on the project, re-aligned on a weekly basis
 
 **Other**
 - Sprints will start Friday morning at 9am EST and run for 1 week
-- The Scrum Master role rotates each week, the schedule will be kept within the Process page on GitHub (https://github.com/rlennon/Doodle/blob/master/content/process.md)
+- The Scrum Master role rotates each week, the schedule is available on the on the [process section](https://github.com/rlennon/Doodle/blob/master/content/process.md)
 - Jira will be used for task management and planning.
 - Each member of the team will work 6 hours per week, unless they are on vacation.
 
 
 **Estimating Story Points Within Jira**
 
-The teams story point velocity is calculated by dividing the total story point completed divided by no of sprints. The Velocity chart from Jira (below) is used for this calculation
+The teams team's velocity is calculated by dividing the the number of points burned each sprint divided by no of sprints. The Velocity chart from Jira (below) is used for this calculation.
+
+The teams current story point velocity is ~20.
 
 ![Screenshot](./content/images/velocitychart.png)
-
-The teams current story point velocity is 20.
