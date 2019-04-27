@@ -5,9 +5,9 @@
   - [Strategy](#strategy)
 
 ## Setup
-The GitHub repository (https://github.com/rlennon/Doodle) was created by the PO.
+The GitHub [repository](https://github.com/rlennon/Doodle) was created by the PO.
 
-Each member of the team was given write access to the repository.
+Each member of the team was given access to the repository.
 
 To keep things simple and follow best practices we tried to align with GitHub conventions wherever possible.
 
@@ -15,9 +15,9 @@ To keep things simple and follow best practices we tried to align with GitHub co
 
 We have adopted a simple branching strategy based on trunk based development, all code and documentation is held within the master branch. This involves:
 
-- Each developer having a copy of the code on their own local machine.
+- Each engineer having a copy of the code on their own local machine.
 
-- Each developer makes changes locally.
+- Each engineer makes changes locally.
 
 - Those changes are then pushed to the GitHub repository.
 
@@ -27,7 +27,7 @@ We have adopted a simple branching strategy based on trunk based development, al
 
 - Originally 2 teams members had to peer review each pull request but this was reduced to 1 after a discussion amoungst the team.
 
-- If the changes are acceptable then the team member who reviewed them puts in a comment & clicks approve. If the changes are not acceptable then the team member puts in a comment and rejects the pull request so it goes back to the original developer for updates.
+- If the changes are acceptable then the team member who reviewed them puts in a comment & clicks approve. If the changes are not acceptable then the team member puts in a comment and rejects the pull request so it goes back to the original engineer for updates.
 
 - When the pull request has been approved, anyone in the team can go into the pull request and merge the commit which moves the code into the master branch. The branch that was uploaded as part of the pull request can then be deleted as a housekeeping task.
 
