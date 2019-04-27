@@ -5,9 +5,9 @@
   - [Strategy](#strategy)
 
 ## Setup
-The GitHub repository (https://github.com/rlennon/Doodle) was created by the PO.
+The GitHub [repository](https://github.com/rlennon/Doodle) was created by the PO.
 
-Each member of the team was given write access to the repository.
+Each member of the team was given access to the repository.
 
 To keep things simple and follow best practices we tried to align with GitHub conventions wherever possible.
 
