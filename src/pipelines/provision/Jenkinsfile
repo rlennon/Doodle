@@ -33,7 +33,7 @@ pipeline {
   }
   post {
 		success {
-			build job: 'Deploy_Staging', parameters: [string(name: 'DOODLE_BUILD_JOB_BUILD_NUMBER', value: "${BUILD_NUMBER}")], wait: false
+			build job: 'Deploy_Staging', parameters: [string(name: 'DOODLE_BUILD_JOB_BUILD_NUMBER', value: "${DOODLE_BUILD_JOB_BUILD_NUMBER}")], wait: false
 		}
     always {
       cleanWs()
