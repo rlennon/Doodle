@@ -103,6 +103,28 @@ def db_replace_one(doc_id, data):
     return doc, status_code
 
 
+def db_login_find_one(session_id):
+    """"Checks Session by id"""
+    try:
+        doc = db.session .find_one({"_id": ObjectId(session_id)})
+
+    except pymongo.errors.ConnectionFailure as error:
+        return {str(error)}, 500
+
+    return doc, 200
+
+
+def db_login_insert_one(data):
+    """Inserts document into session collection"""
+    try:
+        doc = db.login.insert_one(data)
+        doc_id = doc.inserted_id
+    except pymongo.errors.ConnectionFailure as error:
+        return {str(error)}, 500
+
+    return doc_id, 201
+
+
 class RequirementList(Resource):
     """Requirement End point"""
     @staticmethod
@@ -154,10 +176,32 @@ class Requirement(Resource):
         return resp
 
 
+class Session(Resource):
+    """Create and Check session"""
+    @staticmethod
+    def post():
+        """Create Session"""
+        data = json_util.loads(json_util.dumps(request.get_json()))
+        doc_id, status = db_insert_one(data)
+        resp = jsonify(json.loads(dumps(doc_id)))
+        resp.status_code = status
+        return doc_id
+
+    @staticmethod
+    def get():
+        """Find Session"""
+        doc_id = request.args.get('_Id')
+        doc, status = db_find_one(doc_id)
+        resp = Response(dumps(doc), mimetype='application/json')
+        resp.status_code = status
+        return resp
+
+
 # Add resources
 api.add_resource(RequirementList, '/requirements')
 api.add_resource(Requirement, '/requirement')
+api.add_resource(Session, '/session')
 
 # Run and config the IP (ip 0.0.0.0 for all IPs)
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", debug=True)
