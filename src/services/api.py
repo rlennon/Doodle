@@ -61,6 +61,17 @@ def db_find_one(doc_id):
     return doc, 200
 
 
+def session_find_one(session_id):
+    """"Checks Session by id"""
+    try:
+        doc = db.login.find_one({"_id": ObjectId(session_id)})
+
+    except pymongo.errors.ConnectionFailure as error:
+        return {str(error)}, 500
+
+    return doc, 200
+
+
 def db_insert_one(data):
     """Inserts document into requirement collection"""
     try:
@@ -87,6 +98,21 @@ def db_delete_one(doc_id):
     return "Error", 500
 
 
+def session_delete_one(doc_id):
+    """Deletes single document in collection"""
+    try:
+        result = db.login.delete_one({"_id": ObjectId(doc_id)})
+
+    except pymongo.errors.ConnectionFailure as error:
+        return {str(error)}, 500
+
+    if result.raw_result["n"] == 0 and result.raw_result["ok"] == 1:
+        return "Not Found", 404
+    if result.raw_result["ok"] == 1:
+        return "OK", 204
+    return "Error", 500
+
+
 def db_replace_one(doc_id, data):
     """Updates single document"""
     status_code = 500
@@ -101,6 +127,17 @@ def db_replace_one(doc_id, data):
         return {str(error)}, 500
 
     return doc, status_code
+
+
+def session_insert_one(data):
+    """Inserts document into session collection"""
+    try:
+        doc = db.login.insert_one(data)
+        doc_id = doc.inserted_id
+    except pymongo.errors.ConnectionFailure as error:
+        return {str(error)}, 500
+
+    return doc_id, 201
 
 
 class RequirementList(Resource):
@@ -154,9 +191,41 @@ class Requirement(Resource):
         return resp
 
 
+class Session(Resource):
+    """Create and Check session"""
+    @staticmethod
+    def post():
+        """Create Session"""
+        data = json_util.loads(json_util.dumps(request.get_json()))
+        doc_id, status = session_insert_one(data)
+        resp = jsonify(json.loads(dumps(doc_id)))
+        resp.status_code = status
+        print(doc_id)
+        return resp
+
+    @staticmethod
+    def delete():
+        """Delete Document"""
+        doc_id = request.args.get('_Id')
+        resp, status = session_delete_one(doc_id)
+        resp = Response(dumps(resp), mimetype='application/json')
+        resp.status_code = status
+        return resp
+
+    @staticmethod
+    def get():
+        """Find Session"""
+        doc_id = request.args.get('_Id')
+        doc, status = session_find_one(doc_id)
+        resp = Response(dumps(doc), mimetype='application/json')
+        resp.status_code = status
+        return resp
+
+
 # Add resources
 api.add_resource(RequirementList, '/requirements')
 api.add_resource(Requirement, '/requirement')
+api.add_resource(Session, '/session')
 
 # Run and config the IP (ip 0.0.0.0 for all IPs)
 if __name__ == '__main__':

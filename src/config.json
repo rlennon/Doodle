@@ -3,5 +3,9 @@
   "dbServerEndpoint": "mongodb://127.0.0.1:27017/",
   "apiHost": "api.internal.tld",
   "apiPort": 8080,
-  "uiPort": 80
+  "uiPort": 80,
+  "login": [
+    {"uname":"admin", "pword":"T2k0MiE="},
+    {"uname":"jack", "pword":"Tm9pMTcj"}
+  ]
 }

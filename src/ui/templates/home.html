@@ -12,8 +12,8 @@
     </tr>
     {% for item in branches %}
     <tr  scope="row">
-        <td><a href="/branch/{{ item.id }}"><{{ item.id }}</a></td>
-        <td>{{ item.name}}</td>
+        <td><a href="/branch/{{ session_key }}/{{ item.id }}"><{{ item.id }}</a></td>
+        <td>{{ item.name }}</td>
         <td>{{ item.location }}</td>
         <td>{{ item.contact }}</td>
     </tr>
