@@ -24,7 +24,7 @@ Inspiration Quote
 
 ## Introduction!
 
-This is the online repository for the engineering and tech giant **Doodle**. Our current product **Brancher** will be delivered using an Agile methodology that embraces the [DevOps culture](https://martinfowler.com/bliki/DevOpsCulture.html). 
+This is the online repository for the engineering and tech giant **Doodle**. Our current product **Brancher** will be delivered using an Agile methodology that embraces the [DevOps culture](https://martinfowler.com/bliki/DevOpsCulture.html).
 Please note that our culture embraces change and these documents are treated as living, breathing artefacts that will be continuously updated.
 
 ### Product Owner
@@ -45,7 +45,7 @@ Colin, Conor, Emmet, Fiona, Francis, Lee, Peter, Wes
 - Clean and simple design
 - Document (jpg) handling (upload/viewing )
 - User access levels (client, administrator)
-- Includes at lease one self developed api and one webservice 
+- Includes at lease one self developed api and one webservice
 
 The customer would like an on-line system to enter details for the latest Doodle branch. Doodle is a
 engineering and tech company. Their most popular product is a browser. The system must take details
@@ -61,9 +61,9 @@ the client enters details it should not be able to be changed by the client.
 
 - Frameworks
 - Database
-- Database persistence technology 
+- Database persistence technology
 - Define the buisness Requirements
-- Named queries and database triggers for security 
+- Named queries and database triggers for security
 - Regex for cleansing and validation of data before sending to the database.
 
 ## Useful Links
@@ -82,6 +82,7 @@ the client enters details it should not be able to be changed by the client.
 | [Costings](./content/costings.md) | Overview of the project cost |
 | [Architecture](./content/architecture.md) | Outlines the architecture |
 | [Environments](./content/environment.md) | Overview of the environment set-up |
+| [DR Plan](./content/disaster_recovery_plan.md) | Disaster Recovery Plan and procedures |
 | [Requirements](./content/requirements.md) | Overview of the requirements for the project |
 
 ## Risk Register
