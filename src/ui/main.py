@@ -7,7 +7,7 @@ import datetime
 from flask import Flask, render_template, url_for, flash, redirect, request
 
 app = Flask(__name__)
-isAuthenticated = False
+
 app.config['SECRET_KEY'] = 'f9bf78b9a18ce6d46a0cd2b0b86df9da'
 
 if 'DOODLE_CONFIG' in os.environ:
@@ -31,11 +31,26 @@ def authCheck(session_key):
     session_url = url + "/session?_Id={}".format(session_key)
     response = requests.get(session_url)
     session = response.json()
-    print(session)
     if "_id" in session:
-        return True
+        now = datetime.datetime.now().strftime("%m-%d-%Y-%H-%M-%S")
+        tdelta = datetime.datetime.strptime(session["login_date"], "%m-%d-%Y-%H-%M-%S") -\
+            datetime.datetime.strptime(now, "%m-%d-%Y-%H-%M-%S")
+        print("Login_date:{}".format(session["login_date"]))
+        print("now:{}".format(now))
+        print(tdelta.seconds)
+        if tdelta.total_seconds()/60 > 900:
+            return False, False
+        elif session["uname"] == "admin":
+            isAdmin = True
+            isAuthenticated = True
+            return isAuthenticated, isAdmin
+        else:
+            return True, False
+
     else:
-        return False
+        return False, False
+
+
 
 
 @app.route("/")
@@ -52,8 +67,6 @@ def login():
     form = Forms.LoginForm()
     if form.validate_on_submit():
         if form.username.data in logins and logins[form.username.data].decode("utf-8") == form.password.data:
-            global isAuthenticated
-            isAuthenticated = True
             session_data = {}
             now = datetime.datetime.now().strftime("%m-%d-%Y-%H-%M-%S")
             session_data["login_date"] = now
@@ -68,12 +81,12 @@ def login():
             flash('Incorrect Details', 'danger')
             return redirect(url_for('login'))
 
-    return render_template("login.html", form=form, authenticated=isAuthenticated)
+    return render_template("login.html", form=form)
 
 
 @app.route("/home/<session_key>", methods=['GET', 'POST'])
 def home(session_key):
-    isAuthenticated = authCheck(session_key)
+    isAuthenticated, isAdmin = authCheck(session_key)
     if isAuthenticated is False:
         flash('Please Login', 'danger')
         return redirect(url_for('login'))
@@ -92,10 +105,12 @@ def home(session_key):
                 'contact': doc['contact']
             }
         )
-    return render_template("home.html", branches=branches, authenticated=isAuthenticated, session_key=session_key)
+    return render_template("home.html", branches=branches, authenticated=isAuthenticated, session_key=session_key,
+                           admin=isAdmin)
 
 @app.route("/create/<session_key>", methods=['GET', 'POST'])
 def create(session_key):
+    isAuthenticated, isAdmin = authCheck(session_key)
     if isAuthenticated is False:
         flash('Please Login', 'danger')
         return redirect(url_for('login'))
@@ -126,7 +141,7 @@ def create(session_key):
                 form.requirement.data = ""
                 form.description.data = ""
                 form.branchRequirements.data = json.dumps(requirements)
-            return render_template("create.html", form=form, requirements=requirements, authenticated=isAuthenticated, session_key=session_key)
+            return render_template("create.html", form=form, requirements=requirements, authenticated=isAuthenticated, session_key=session_key, admin=isAdmin)
     if 'submit' in request.form:
         if form.validate_on_submit():
             flash('Branch Created', 'success')
@@ -137,14 +152,16 @@ def create(session_key):
             requirements['location'] = form.location.data
             requirements['contact'] = form.contact.data
             requests.post(urlpost, json=requirements)
-            return redirect(url_for('home'))
+            return redirect(url_for('home', session_key=session_key))
 
-    return render_template("create.html", form=form, requirements=requirements, authenticated=isAuthenticated, session_key=session_key)
+    return render_template("create.html", form=form, requirements=requirements, authenticated=isAuthenticated, session_key=session_key, admin=isAdmin)
 
 
 @app.route("/branch/<session_key>/<branchid>", methods=['GET', 'POST'])
 def update(session_key, branchid):
+    isAuthenticated, isAdmin = authCheck(session_key)
     if isAuthenticated is False:
+        flash('Please Login', 'danger')
         return redirect(url_for('login'))
     form = Forms.UpdateForm()
 
@@ -177,7 +194,7 @@ def update(session_key, branchid):
                 form.requirement.data = ""
                 form.description.data = ""
                 form.branchRequirements.data = json.dumps(requirements)
-            return render_template("update.html", form=form, requirements=requirements, edit="true", authenticated=isAuthenticated, session_key=session_key)
+            return render_template("update.html", form=form, requirements=requirements, edit="true", authenticated=isAuthenticated, session_key=session_key, admin=isAdmin)
     elif 'update' in request.form:
         if form.validate_on_submit():
             flash('Branch Updated', 'success')
@@ -190,11 +207,11 @@ def update(session_key, branchid):
             requirements['location'] = form.location.data
             requirements['contact'] = form.contact.data
             requests.put(urlput, json=requirements)
-            return redirect(url_for('home'))
+            return redirect(url_for('home', session_key=session_key))
     elif 'delete' in request.form:
         deleteAction(branchid)
         flash('Successfully Deleted', 'success')
-        return redirect(url_for('home'))
+        return redirect(url_for('home', session_key=session_key))
     else:
         requirements = {}
         for requirement in branch:
@@ -214,10 +231,10 @@ def update(session_key, branchid):
 
         if 'editBranch' in request.form:
             return render_template("update.html", form=form, requirements=requirements, edit="true",
-                                   authenticated=isAuthenticated, session_key=session_key)
+                                   authenticated=isAuthenticated, session_key=session_key, admin=isAdmin)
 
     return render_template("update.html", form=form, requirements=requirements, edit="false",
-                           authenticated=isAuthenticated, session_key=session_key)
+                           authenticated=isAuthenticated, session_key=session_key, admin=isAdmin)
 
 
 def deleteAction(branchid):

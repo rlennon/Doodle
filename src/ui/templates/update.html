@@ -72,7 +72,7 @@
   <div id="DoNotDelete" style="display: none;">
     {{ form.branchRequirements(class="form-control form-control-lg") }}
   </div>
-  {% if edit == "false" %}
+  {% if edit == "false" and admin %}
   <div class="form-group">
     {{ form.editBranch(class="btn btn-outline-info btn-block") }}
   </div>
