@@ -1,0 +1,71 @@
+pipeline {
+  agent any
+	parameters {
+			  string(defaultValue: '', description: '', name: 'DOODLE_BUILD_JOB_BUILD_NUMBER')
+	}
+  stages {
+    stage('GitHub Pull') {
+      steps {
+        sh 'echo "*************************GitHub Pull*************************"'
+        script {
+          checkout([$class: 'GitSCM',
+            branches: [[name: '*/master']],
+            doGenerateSubmoduleConfigurations: false,
+            extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: "rlennon/doodle/src"]],
+            submoduleCfg: [],
+            userRemoteConfigs: [[url: 'git@github.com:rlennon/doodle']]
+          ])
+        }
+      }
+    }
+		stage('Deploy to Staging') {
+  		steps {
+			  sh 'echo "*************************Deploy Staging*************************"'
+        sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook --tags=deploy --extra-vars "artifactory_build_url=${ARTIFACTORY_SERVER}:${ARTIFACTORY_PORT}/artifactory/doodle-release-local/com/doodle/build/doodle_build-${DOODLE_BUILD_JOB_BUILD_NUMBER}/doodle_build-${DOODLE_BUILD_JOB_BUILD_NUMBER}.tar" -u doodle -i ~/hosts-staging.ini ${WORKSPACE}/src/infra/ansible/site.yml'
+      }
+		}
+    stage('Testing') {
+      parallel {
+        stage('Deployment Validation Test') {
+          steps {
+            sh '''
+              echo "*************************Testing connection to the Endpoint*************************"
+              if curl -v ${STAGING_ENDPOINT} 2>&1 | grep "HTTP/1.1 200 OK"
+              then
+	              echo "Deployment Successful!"
+              else
+	              echo "Endpoint Test not successful, please investigate!"
+	              exit 1
+              fi
+            '''
+          }
+        }
+        stage('Security Scanning') {
+	  	    steps {
+		  	    sh '''
+			        echo "*************************Running Security scan for open ports*************************"
+			        if [ -n "${WORKSPACE:+1}" ]; then
+    		 	      # Path to virtualenv cmd installed by pip
+    			      # /usr/local/bin/virtualenv
+    			      PATH=$WORKSPACE/venv/bin:/usr/local/bin:$PATH
+    			      if [ ! -d "venv" ]; then
+            	    virtualenv -p python3 venv
+    			      fi
+    			      . venv/bin/activate
+			        fi
+              python3 ./vars/Staging_security_port_scanning.py
+            '''
+ 			    }
+		    }
+      }
+    }
+  }
+	post {
+		success {
+			build job: 'Deploy_Production', parameters: [string(name: 'DOODLE_BUILD_JOB_BUILD_NUMBER', value: "${DOODLE_BUILD_JOB_BUILD_NUMBER}")], wait: false
+		}
+		always {
+			cleanWs()
+		}
+	}
+}

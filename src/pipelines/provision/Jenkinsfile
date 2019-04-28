@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  parameters {
+	  string(defaultValue: '', description: '', name: 'DOODLE_BUILD_JOB_BUILD_NUMBER')
+	}
   stages {
     stage('GitHub Pull') {
 	  	steps {
@@ -21,11 +24,25 @@ pipeline {
           sh 'ansible-lint ${WORKSPACE}/src/infra/ansible/site.yml'
     	  }
     }
-    stage('Ansible Prevision: staging') {
+    stage('Ansible Provision: Staging') {
       steps {
         sh 'echo "*************************Ansible Provision: Staging*************************"'
-        sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u doodle -i ~/hosts-staging.ini ${WORKSPACE}/src/infra/ansible/site.yml'
+        sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook --tags=provision -u doodle -i ~/hosts-staging.ini ${WORKSPACE}/src/infra/ansible/site.yml'
       }
+    }
+    stage('Ansible Provision: Production') {
+      steps {
+        sh 'echo "*************************Ansible Provision: Production*************************"'
+        sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook --tags=provision -u doodle -i ~/hosts-prod.ini ${WORKSPACE}/src/infra/ansible/site.yml'
+      }
+    }
+  }
+  post {
+		success {
+			build job: 'Deploy_Staging', parameters: [string(name: 'DOODLE_BUILD_JOB_BUILD_NUMBER', value: "${DOODLE_BUILD_JOB_BUILD_NUMBER}")], wait: false
+		}
+    always {
+      cleanWs()
     }
   }
 }

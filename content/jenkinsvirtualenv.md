@@ -55,6 +55,8 @@ To be run on a clean Ubuntu install:
 
 ## Create Jenkins Pipeline
 
+Note: The following instructions are for testing only. Changes to the actual jenkins build file will require an RFC.
+
 1. Add new pipeline
 2. General
     * Check 'Github Project'
@@ -65,7 +67,5 @@ To be run on a clean Ubuntu install:
     * Definition - Pipeline script from SCM
     * SCM - Git
     * Repository URL - Copy SSH from git hub (ie git@github.com:User/repository)
-    * Script Path - src/pipelines/build/Jenkinsfilevirtualenv
+    * Script Path - Jenkinsfile
 5. Save
-
-* Note: The current Jenkinsfilevirtualenv has the artifactory stages removed for local testing.
