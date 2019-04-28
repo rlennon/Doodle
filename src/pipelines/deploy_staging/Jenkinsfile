@@ -28,7 +28,16 @@ pipeline {
       parallel {
         stage('Deployment Validation Test') {
           steps {
-            sh 'echo "*************************Smoke Test*************************"'
+            sh '''
+              echo "*************************Testing connection to the Endpoint*************************"
+              if curl -v ${STAGING_ENDPOINT} 2>&1 | grep "HTTP/1.1 200 OK"
+              then
+	              echo "Deployment Successful!"
+              else
+	              echo "Endpoint Test not successful, please investigate!"
+	              exit 1
+              fi
+            '''
           }
         }
         stage('Security Scanning') {
